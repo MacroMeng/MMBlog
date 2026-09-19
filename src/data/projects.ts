@@ -6,40 +6,16 @@ import type { ProjectItem } from "@/types/projectsConfig";
 
 export const projectsData: ProjectItem[] = [
 	{
-		key: "shirone",
-		title: "Shirone",
-		summary:
-			"An Astro blog theme shaped around an M3E component system, expressive content, and resilient client navigation.",
-		category: "theme",
-		phase: "building",
-		technologies: ["Astro", "Svelte", "TypeScript", "Tailwind CSS"],
-		icon: "material-symbols:deployed-code-outline-rounded",
-		cover: "/assets/projects/shirone.webp",
-		coverAlt: "Shirone theme homepage preview",
-		featured: true,
-		repository: "https://github.com/LyraVoid/Shirone",
-		year: "2026",
-	},
-	{
-		key: "folkpatch",
-		title: "FolkPatch",
-		summary: "A kernel-level root solution for Android, built on APatch.",
-		category: "android",
-		phase: "building",
-		technologies: ["Kotlin", "APatch", "Android"],
-		icon: "material-symbols:terminal-rounded",
-		repository: "https://github.com/LyraVoid/FolkPatch",
-	},
-	{
-		key: "kernelpatch",
-		title: "KernelPatch",
-		summary:
-			"A kernel patch framework that powers APatch-style root on Android by loading code into the running kernel.",
-		category: "android",
+		key: "omi",
+		title: "OhMyIWB",
+		summary: "智在知互 思于识通 - 学生集体的独立思考录",
+		category: "text",
 		phase: "shipped",
-		technologies: ["C", "Linux Kernel", "Android"],
-		icon: "material-symbols:extension-outline-rounded",
-		repository: "https://github.com/lyravoid/KernelPatch",
+		technologies: ["VitePress", "RSS"],
+		icon: "material-symbols:chat",
+		featured: true,
+		repository: "https://ohmyiwb.mm666.qzz.io",
+		year: "2026",
 	},
 ];
 

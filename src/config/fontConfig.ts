@@ -50,27 +50,17 @@ export const fontConfig: FontConfig = withUserConfig("font", {
 	 */
 	fontFamilies: [
 		// ---------------------------------------------------------------------
-		// 1. 正文字体（现代几何圆润西文字体 Outfit，与 M3E 大圆角及悠哉圆体绝配）
+		// 1. 正文字体
 		// ---------------------------------------------------------------------
 		{
-			id: "outfit-body",
-			family: "Outfit",
+			id: "google-sans-flex",
+			family: "Google Sans Flex",
 			role: "body",
 			source: "fontsource",
 			variants: [
 				{
-					file: "@fontsource/outfit/400.css",
-					weight: 400,
-					style: "normal",
-				},
-				{
-					file: "@fontsource/outfit/500.css",
-					weight: 500,
-					style: "normal",
-				},
-				{
-					file: "@fontsource/outfit/700.css",
-					weight: 700,
+					file: "@fontsource-variable/google-sans-flex/full.css",
+					weight: "100 1000",
 					style: "normal",
 				},
 			],
@@ -80,21 +70,30 @@ export const fontConfig: FontConfig = withUserConfig("font", {
 		},
 
 		// ---------------------------------------------------------------------
-		// 2. 中文 / 日文 CJK 字体（悠哉圆体 Yozai Medium，全量简繁中日韩 100% 覆盖）
+		// 2. 中文 / 日文 CJK 字体
 		// ---------------------------------------------------------------------
 		{
-			id: "yozai-cjk",
-			family: "Yozai Medium",
+			id: "misans-vf",
+			family: "MiSans VF",
 			role: "cjk",
 			source: "local",
 			variants: [
 				{
-					file: "src/assets/fonts/Yozai-Medium.ttf",
-					weight: 500,
+					file: "src/assets/fonts/MiSans VF.ttf",
+					weight: "100 900",
 					style: "normal",
 				},
 			],
-			fallback: ["system-ui", "sans-serif"],
+			fallback: [
+				"MiSans",
+				"MiSans L3",
+				"Noto Sans CJK SC",
+				"Noto Sans SC",
+				"HarmonyOS Sans SC",
+				"思源黑体 SC",
+				"system-ui",
+				"sans-serif",
+			],
 			display: "swap",
 			preload: false,
 		},
@@ -120,8 +119,12 @@ export const fontConfig: FontConfig = withUserConfig("font", {
 				},
 			],
 			fallback: [
+				"Maple Mono NF CN",
+				"Maple Mono CN",
 				"ui-monospace",
 				"SFMono-Regular",
+				"Fira Code",
+				"Cascadia Code",
 				"Menlo",
 				"Monaco",
 				"Consolas",

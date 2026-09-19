@@ -42,12 +42,6 @@ export const fabConfig: FabConfig = withUserConfig("fab", {
 			closeOnSelect: true,
 		},
 		{
-			type: "comment",
-			enable: true,
-			devices: ["mobile", "tablet"],
-			pages: ["post"],
-		},
-		{
 			type: "home",
 			enable: true,
 			devices: ["mobile", "tablet"],

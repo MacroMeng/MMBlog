@@ -64,12 +64,12 @@ export const musicConfig: MusicConfig = withUserConfig("music", {
 	meting: {
 		server: "netease",
 		type: "playlist",
-		id: "14164869977",
+		id: "18395330138",
 		// 进入视口时预取歌单元数据（仅元信息，不预取音频流）：
 		// "metadata"（取）| "none"（默认，不取；交互后才请求，卡片显示「尚未请求」占位）
 		preload: "none",
 	},
-	defaultVolume: 0.7,
+	defaultVolume: 1.0,
 	defaultMode: "sequence",
 });
 
