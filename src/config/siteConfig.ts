@@ -98,7 +98,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 				// 回退反向删除速度（每个字符间隔，毫秒）。
 				deleteSpeed: 50,
 				// 打字完成后停顿时间，单位为毫秒。
-				pauseTime: 5000,
+				pauseTime: 3000,
 				// 完成后是否循环播放；关闭表示只播放一次。
 				loop: true,
 			},
@@ -133,7 +133,7 @@ export const siteConfig: SiteConfig = withUserConfig("site", {
 	},
 	favicon: [
 		// 浏览器标签页图标，路径相对于 public 目录。
-		{ src: "/logo/icon.webp" },
+		{ src: "/logo/AvatarOcean.webp" },
 	],
 });
 
