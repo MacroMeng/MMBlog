@@ -3,10 +3,10 @@ title: The Echo Pt.ε | 回响倚音 第ε节
 published: 2026-09-21
 pinned: false
 description: 忆希往日那些美好而沉重的日子。
-tags: [TheEcho, Dairy, OMI, NMD]
+tags: [TheEcho, Dairy]
 category: TheEcho
 lang: zh_CN
-draft: true
+draft: false
 ---
 > **The Echo 回响倚音**系列第ε篇。不知道写给谁看，也许你会看到。
 
