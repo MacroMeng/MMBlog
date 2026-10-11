@@ -9,7 +9,9 @@ lang: zh_CN
 draft: false
 ---
 > > 元界，是一个由 MacrosMeng 打造的独特世界观。具体设定随故事发展而展开。关注 MMSite RSS 订阅获取更多信息。
+>
 > Disgoal point is a lie. The past, the future... is not there YET...
+
 **「元界 (Elemenverse)」** 正受赤蚀 (Redarange) 的侵蚀。元界联合会 (Elemenverse United, E.U.) 的学者，想尽办法组织力量，为元界中每个 **层** (Layer)、每个 **载口** (Loader) 设置冰痕，阻碍赤蚀的破坏……这个宇宙从来就没有太平过……
 
 而 Mexy (Steven Mexolme, Mexy) 只是居住在——或许这个词对元界居民来说并不合适，它们的意识寄存在空渊 (Void) 的未探明的介质中，只是游离在各层，然而被赋予了实体存在，而在元界一个奇特的非三维可复刻的「载体」中生成——而或许「实体」也只是一种方便而成的称呼——想必这也是为什么这里的「行政区界」名如此令人费解之因吧——晶匿层 (Layer Critsiln) 琳雾载口 (Loader Linfogged) 的一位普通元界实体而已。
