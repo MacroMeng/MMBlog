@@ -39,7 +39,7 @@ Microsoft Todo 的痛点不算很多，但也不少了。
 
 设计已经设计好了，来总结一下。
 
-- *MexyLaziness** 总规划
+- **MexyLaziness** 总规划
   - 技术栈 / Flutter + Dart
   - 设计风格 / MD3E（冲浪时候看到 Flutter 3.47（应该是这个版本）出的主题包设定，在 pub.dev 看到了一个做得不错的 MD3E 主题包那就用吧）
   - 编码风格 / 半 AI（毕竟我没手写过 Dart，就当学习了。咕咕咕后也许会给 YABVA 也 Dart 化？）
