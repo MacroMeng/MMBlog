@@ -3,7 +3,7 @@ import DefaultTheme from "vitepress/theme-without-fonts";
 import { useBlog } from "@binarynoir/vitepress-blog/client";
 
 // Self-hosted fonts (Fontsource). No Inter is imported anywhere.
-import "@fontsource-variable/google-sans-flex";
+// import "@fontsource-variable/google-sans-flex"; // Use custom CSS import instead for more axises
 import "@fontsource-variable/noto-sans-sc";
 
 // Material Symbols (outlined) — the Material icon library.

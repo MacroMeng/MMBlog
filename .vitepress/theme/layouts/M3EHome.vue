@@ -225,8 +225,10 @@ function formatStat(value: string) {
   margin: 0;
   color: var(--md-sys-color-on-surface);
   font-family: var(--md-sys-typescale-display-medium-font);
-  font-size: clamp(2.6rem, 7vw, 4.4rem);
-  font-weight: var(--md-sys-typescale-emphasized-display-medium-weight);
+  font-size: clamp(2.8rem, 7.4vw, 30rem);
+  font-weight: 600;
+  font-stretch: normal;
+  font-optical-sizing: auto;
   line-height: 1.06;
   letter-spacing: -0.03em;
   text-wrap: balance;
@@ -236,6 +238,11 @@ function formatStat(value: string) {
   position: relative;
   display: inline-block;
   color: var(--md-sys-color-primary);
+  font-size: clamp(3rem, 7.8vw, 40rem);
+  font-weight: 900;
+  font-stretch: 120%;
+  font-optical-sizing: auto;
+  letter-spacing: -0.05em;
 }
 
 .hero__accent::after {

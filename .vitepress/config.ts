@@ -7,11 +7,11 @@ import type { DeepPartial, M3EConfig } from "./theme/types/site-config.ts";
 
 // VitePress site-level values. `sitemap.hostname` is the single source for the
 // absolute URL; the blog plugin receives the same value.
-const siteUrl = "https://example.com";
-const siteTitle = "M33E Blog";
-const siteDescription = "前端工程、设计系统与 Material 3 Expressive。";
+const siteUrl = "https://unnuTechnology.github.io";
+const siteTitle = "M33EBlog";
+const siteDescription = "MacrosMeng's Material 3 Expressive Blog Example Site";
 // Root site / custom domain: "/". GitHub Pages project site: "/repo-name/".
-const base = process.env.VP_BASE || "/";
+const base = process.env.VP_BASE || "/M33EBlog/";
 
 const alertIcon = (name: string) =>
   `<span class="material-symbols-outlined" aria-hidden="true">${name}</span>`;
@@ -168,22 +168,21 @@ function wrapMarkdownTables(md: any) {
  */
 const m3eConfig = {
   authors: {
-    meng: { name: "Meng", url: `${siteUrl}/about` },
+    meng: { name: "MacrosMeng", url: `${siteUrl}/about` },
   },
   profile: {
-    name: "Meng",
+    name: "MacrosMeng",
     handle: "M33E",
-    role: "前端工程师 · 设计系统爱好者",
+    role: "只是一个学生……",
     avatar: "/avatar.svg",
-    bio: "喜欢把复杂的东西拆开、再装回去。这里记录前端工程、设计系统与一些不务正业的折腾。",
+    bio: "The people who are crazy to think they can change the world, are the ones who do. —— Think Different, Apple",
     location: "中国",
     skills: [
       "VitePress",
       "Vue",
       "TypeScript",
-      "Material 3",
-      "设计系统",
-      "前端工程",
+      "Material 3 Expressive",
+      "Designing",
     ],
     cta: {
       label: "认识我",
@@ -192,22 +191,16 @@ const m3eConfig = {
   },
   socials: [
     {
-      label: "GitHub",
-      handle: "@M33E",
-      href: "https://github.com/",
+      label: "GitHub Repo",
+      handle: "unnuTechnology/M33EBlog",
+      href: "https://github.com/unnuTechnology/M33EBlog",
       icon: "code",
       navIcon: "github",
     },
     {
-      label: "Bilibili",
-      handle: "@M33E",
-      href: "https://www.bilibili.com/",
-      icon: "smart_display",
-    },
-    {
       label: "Email",
-      handle: "hello@example.com",
-      href: "mailto:hello@example.com",
+      handle: "meng-yc@outlook.com",
+      href: "mailto:meng-yc@outlook.com",
       icon: "mail",
     },
     {
@@ -221,15 +214,15 @@ const m3eConfig = {
   home: {
     hero: {
       eyebrowIcon: "flare",
-      eyebrow: "M33E · NOTES ON CRAFT",
-      titleLead: "把想法写成",
-      titleAccent: "可以运行的东西",
-      titleTail: "。",
+      eyebrow: "M33E · 表达，自有声",
+      titleLead: "To Express",
+      titleAccent: "Expressively",
+      titleTail: "",
       description:
-        "前端工程、设计系统与 Material 3 Expressive。这里记录我如何把界面、代码和一点好奇心，拼成可以交付的产品。",
+        "深入探索 Material Design 3 Expressive 带来的深厚表现力与足够简约不抢眼的博客风格。",
       actions: [
         {
-          label: "阅读文章",
+          label: "开始阅读",
           href: "/blog/",
           icon: "article",
           variant: "filled",
@@ -281,7 +274,7 @@ const m3eConfig = {
     about: {
       eyebrow: "ABOUT",
       title: "关于这个站点",
-      body: "这是一个用 VitePress 2 搭起来的个人博客，视觉层按 Material 3 Expressive 的 token 体系设计。文章、RSS 与 SEO 交给博客插件，首页文章流则用 createContentLoader 读取同一套 frontmatter。",
+      body: "这是一个用 VitePress 2 搭起来的博客范例，视觉层按 Material 3 Expressive 的 token 体系设计。文章、RSS 与 SEO 交给博客插件，首页文章流则用 createContentLoader 读取同一套 frontmatter。",
       action: {
         label: "阅读 Readme",
         href: "/about",
@@ -291,7 +284,7 @@ const m3eConfig = {
     },
   },
   footer: {
-    since: 2024,
+    since: 2026,
     icp: "",
     links: [
       { label: "文章", href: "/blog/" },
@@ -300,17 +293,17 @@ const m3eConfig = {
     ],
     socialsLabel: "页脚社交链接",
     builtWith: "Built with VitePress & Material 3 Expressive",
-    copyrightSuffix: "保留所有权利",
+    copyrightSuffix: "Code in MPL 2.0, Content in CC-BY 4.0",
   },
   oneLiner: {
-    source: "/one-liners.json",
+    source: "/hitokoto.json",
     label: "今日一言",
     offlineLabel: "（离线句子）",
     refreshLabel: "换一句",
     loadingLabel: "正在获取新句子",
     fallback: {
-      text: "慢慢来，比较快。",
-      from: "M33E",
+      text: "你咋看到这个句子的？",
+      from: "你知道太多了。",
     },
   },
 } satisfies DeepPartial<M3EConfig>;
@@ -333,7 +326,7 @@ const navSocialLinks = m3e.socials.flatMap((social) => {
 const blogOptions = {
   siteUrl,
   authors,
-  defaultAuthor: "meng",
+  defaultAuthor: "MacrosMeng",
   locale: "zh-CN",
   timeZone: "Asia/Shanghai",
   dateFormat: { dateStyle: "long" as const },
@@ -344,7 +337,7 @@ const blogOptions = {
   },
   wordsPerMinute: 220,
   byline: true,
-  cover: false,
+  cover: true,
   postNav: true,
   feedLimit: 20,
   pageSize: 9,
