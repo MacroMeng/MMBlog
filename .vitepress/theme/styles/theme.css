@@ -1,0 +1,991 @@
+/* ==========================================================================
+   M3E × VitePress bridge
+   Every colour below resolves to a Material role. No component colour is
+   hard-coded; the palette itself lives in the generated tokens.css.
+   ========================================================================== */
+
+:root {
+  --vp-font-family-base:
+    "Google Sans Flex Variable", "Noto Sans SC Variable", "Noto Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  --vp-font-family-mono:
+    ui-monospace, "SFMono-Regular", "Cascadia Code", Consolas,
+    "Liberation Mono", monospace;
+
+  /* Surfaces & text ------------------------------------------------------ */
+  --vp-c-bg: var(--md-sys-color-surface);
+  --vp-c-bg-alt: var(--md-sys-color-surface-container-low);
+  --vp-c-bg-elv: var(--md-sys-color-surface-container);
+  --vp-c-bg-soft: var(--md-sys-color-surface-container);
+
+  --vp-c-text-1: var(--md-sys-color-on-surface);
+  --vp-c-text-2: var(--md-sys-color-on-surface-variant);
+  --vp-c-text-3: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface-variant) 64%,
+    transparent
+  );
+
+  --vp-c-divider: var(--md-sys-color-outline-variant);
+  --vp-c-gutter: var(--md-sys-color-outline-variant);
+  --vp-c-border: var(--md-sys-color-outline-variant);
+
+  /* Brand & semantic ----------------------------------------------------- */
+  --vp-c-brand-1: var(--md-sys-color-primary);
+  --vp-c-brand-2: var(--md-sys-color-primary-dim, var(--md-sys-color-primary));
+  --vp-c-brand-3: var(--md-sys-color-primary);
+  --vp-c-brand-soft: color-mix(
+    in srgb,
+    var(--md-sys-color-primary-container) 62%,
+    transparent
+  );
+
+  --vp-c-default-1: var(--md-sys-color-on-surface);
+  --vp-c-default-2: var(--md-sys-color-on-surface-variant);
+  --vp-c-default-3: var(--md-sys-color-outline);
+  --vp-c-default-soft: var(--md-sys-color-surface-container-high);
+
+  --vp-c-tip-1: var(--md-sys-color-tertiary);
+  --vp-c-tip-2: var(--md-sys-color-tertiary-dim, var(--md-sys-color-tertiary));
+  --vp-c-tip-3: var(--md-sys-color-tertiary);
+  --vp-c-tip-soft: var(--md-sys-color-tertiary-container);
+
+  --vp-c-important-1: var(--md-sys-color-primary);
+  --vp-c-important-2: var(
+    --md-sys-color-primary-dim,
+    var(--md-sys-color-primary)
+  );
+  --vp-c-important-3: var(--md-sys-color-primary);
+  --vp-c-important-soft: var(--md-sys-color-primary-container);
+
+  --vp-c-warning-1: var(--md-sys-color-secondary);
+  --vp-c-warning-2: var(
+    --md-sys-color-secondary-dim,
+    var(--md-sys-color-secondary)
+  );
+  --vp-c-warning-3: var(--md-sys-color-secondary);
+  --vp-c-warning-soft: var(--md-sys-color-secondary-container);
+
+  --vp-c-danger-1: var(--md-sys-color-error);
+  --vp-c-danger-2: var(--md-sys-color-error-dim, var(--md-sys-color-error));
+  --vp-c-danger-3: var(--md-sys-color-error);
+  --vp-c-danger-soft: var(--md-sys-color-error-container);
+
+  /* Buttons -------------------------------------------------------------- */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: var(--md-sys-color-on-primary);
+  --vp-button-brand-bg: var(--md-sys-color-primary);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: var(--md-sys-color-on-primary);
+  --vp-button-brand-hover-bg: var(
+    --md-sys-color-primary-dim,
+    var(--md-sys-color-primary)
+  );
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: var(--md-sys-color-on-primary);
+  --vp-button-brand-active-bg: var(--md-sys-color-primary);
+
+  --vp-button-alt-border: var(--md-sys-color-outline-variant);
+  --vp-button-alt-text: var(--md-sys-color-on-surface);
+  --vp-button-alt-bg: var(--md-sys-color-surface-container);
+  --vp-button-alt-hover-border: transparent;
+  --vp-button-alt-hover-text: var(--md-sys-color-on-secondary-container);
+  --vp-button-alt-hover-bg: var(--md-sys-color-secondary-container);
+  --vp-button-alt-active-border: transparent;
+  --vp-button-alt-active-text: var(--md-sys-color-on-secondary-container);
+  --vp-button-alt-active-bg: var(--md-sys-color-secondary-container);
+
+  /* Navbar --------------------------------------------------------------- */
+  --vp-nav-height: 64px;
+  --vp-nav-bg-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container) 78%,
+    transparent
+  );
+  --vp-nav-home-bg-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface) 70%,
+    transparent
+  );
+  --vp-nav-screen-bg-color: var(--md-sys-color-surface-container);
+  --vp-nav-divider-color: color-mix(
+    in srgb,
+    var(--md-sys-color-outline-variant) 62%,
+    transparent
+  );
+  --vp-nav-backdrop-filter: saturate(160%) blur(18px);
+  --vp-local-nav-bg-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-container) 76%,
+    transparent
+  );
+
+  /* Layout --------------------------------------------------------------- */
+  --vp-sidebar-width: 296px;
+  --vp-sidebar-bg-color: var(--md-sys-color-surface-container-low);
+  --vp-layout-max-width: 1440px;
+
+  /* Motion --------------------------------------------------------------- */
+  /*
+   * Radius interpolation cannot overshoot: a spatial spring below the target
+   * radius would produce a negative value, which browsers clamp to 0 and
+   * flash a square corner before returning. Shape morphs therefore use the
+   * effects spring (damping 1.0, no overshoot). Spatial springs remain on
+   * transforms, where overshoot is safe.
+   */
+  --m3e-shape-morph-duration: var(
+    --md-sys-motion-spring-expressive-effects-fast-duration
+  );
+  --m3e-shape-morph-easing: var(
+    --md-sys-motion-spring-expressive-effects-fast-easing
+  );
+
+  /* Code ----------------------------------------------------------------- */
+  /*
+   * Catppuccin Mocha is the syntax palette, not an M3 colour-role set. These
+   * are the official Mocha values used by Shiki and the code chrome.
+   */
+  --m3e-code-bg: #1e1e2e;
+  --m3e-code-surface: #181825;
+  --m3e-code-border: #313244;
+  --m3e-code-text: #cdd6f4;
+  --m3e-code-muted: #a6adc8;
+  --m3e-code-overlay: #6c7086;
+
+  --vp-code-block-bg: var(--m3e-code-bg);
+  --vp-code-bg: var(--md-sys-color-surface-container-high);
+  --vp-code-color: var(--md-sys-color-primary);
+  --vp-code-line-highlight-color: var(--m3e-code-border);
+  --vp-code-copy-code-border-color: var(--m3e-code-border);
+  --vp-code-copy-code-bg: color-mix(
+    in srgb,
+    var(--m3e-code-surface) 82%,
+    transparent
+  );
+  --vp-code-copy-code-hover-border-color: var(--m3e-code-muted);
+  --vp-code-copy-code-hover-bg: var(--m3e-code-border);
+  --vp-code-copy-code-active-text: var(--m3e-code-text);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--md-sys-color-surface);
+  /* Keep page anchors instantaneous: VitePress updates the outline marker
+     from scroll events, and smooth page scrolling re-activates intermediate
+     headings, making the indicator animate twice. */
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--vp-font-family-base);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+:focus-visible {
+  outline-color: var(--md-sys-color-primary);
+}
+
+/* The Material Symbols webfont is imported in theme/index.ts. */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  line-height: 1;
+  vertical-align: -0.15em;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar — surface container + frosted glass. Structure/logic untouched.
+   -------------------------------------------------------------------------- */
+
+.VPNavBar {
+  border-block-end: 1px solid var(--vp-nav-divider-color);
+  backdrop-filter: var(--vp-nav-backdrop-filter);
+}
+
+.VPNavBar .container {
+  max-inline-size: 1280px;
+}
+
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.05rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+.VPNavBarTitle .logo {
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: var(--md-sys-shape-corner-small);
+}
+
+.VPNavBarMenuLink {
+  min-block-size: 40px;
+  padding-inline: 14px !important;
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant) !important;
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  transition:
+    background-color
+      var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing),
+    color var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing),
+    border-radius var(--m3e-shape-morph-duration) var(--m3e-shape-morph-easing);
+}
+
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuLink.active {
+  border-radius: var(--md-sys-shape-corner-large);
+  background: color-mix(in srgb, var(--md-sys-color-primary) 9%, transparent);
+  color: var(--md-sys-color-primary) !important;
+}
+
+.VPNavBarMenuLink.active {
+  font-weight: var(--md-sys-typescale-emphasized-label-large-weight);
+}
+
+.VPNavBar .VPNavBarSocialLinks {
+  gap: var(--md-sys-spacing-25);
+  margin-inline: var(--md-sys-spacing-100) 0;
+}
+
+.VPNavBarSocialLinks::before {
+  margin-inline: 0 !important;
+}
+
+.VPNavBarSocialLinks .VPSocialLink {
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  transition:
+    background-color
+      var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing),
+    border-radius var(--m3e-shape-morph-duration) var(--m3e-shape-morph-easing),
+    color var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing);
+}
+
+.VPNavBarSocialLinks .VPSocialLink:hover {
+  border-radius: var(--md-sys-shape-corner-large);
+  background: color-mix(in srgb, var(--md-sys-color-primary) 9%, transparent);
+  color: var(--md-sys-color-primary);
+}
+
+.VPNavBarSocialLinks .VPSocialLink:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.VPNavBarHamburger {
+  block-size: 48px;
+  margin-block: 8px;
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.VPNavBar .VPNavBarHamburger:hover,
+.VPNavBar .VPNavBarHamburger.active {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 9%, transparent);
+}
+
+.VPNavScreen {
+  border-block-start: 1px solid var(--vp-nav-divider-color);
+}
+
+.VPNavScreenMenu .list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-50);
+}
+
+.VPNavScreenMenuLink,
+.VPNavScreenMenuGroupLink {
+  padding: var(--md-sys-spacing-125) var(--md-sys-spacing-200) !important;
+  border: 0 !important;
+  border-radius: var(--md-sys-shape-corner-large) !important;
+  color: var(--md-sys-color-on-surface) !important;
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+}
+
+.VPNavScreenMenuLink:hover,
+.VPNavScreenMenuLink.active,
+.VPNavScreenMenuGroupLink:hover {
+  border-radius: var(--md-sys-shape-corner-extra-large) !important;
+  background: color-mix(in srgb, var(--md-sys-color-primary) 9%, transparent);
+  color: var(--md-sys-color-primary) !important;
+}
+
+.VPNavScreenAppearance {
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface-container-high);
+}
+
+/* Local nav (outline header) */
+.VPLocalNav {
+  border-block-end: 1px solid var(--vp-nav-divider-color);
+}
+
+.VPLocalNavOutlineDropdown button {
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Search --------------------------------------------------------------- */
+
+.DocSearch-Button,
+.VPNavBarSearch .DocSearch-Button {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.DocSearch-Button:hover {
+  border-color: transparent;
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.DocSearch-Button .DocSearch-Search-Icon {
+  color: currentcolor;
+}
+
+.DocSearch-Button-Key {
+  border-color: var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  background: var(--md-sys-color-surface);
+  box-shadow: none;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.DocSearch-Container {
+  background: color-mix(in srgb, var(--md-sys-color-scrim) 42%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.DocSearch-Modal {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  background: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.DocSearch-SearchBar,
+.DocSearch-Footer {
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+.DocSearch-Form {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface);
+  box-shadow: none;
+}
+
+.DocSearch-Hit a {
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+
+.DocSearch-Hit[aria-selected="true"] a {
+  background: var(--md-sys-color-secondary-container);
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar / aside
+   -------------------------------------------------------------------------- */
+
+.VPSidebar {
+  border-inline-end: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.VPSidebarItem .text {
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+}
+
+.VPSidebarItem.is-active > .item .link > .text {
+  color: var(--md-sys-color-primary);
+  font-weight: var(--md-sys-typescale-emphasized-label-large-weight);
+}
+
+.VPSidebarItem .item:hover .text {
+  color: var(--md-sys-color-primary);
+}
+
+.VPDocAsideOutline .outline-link {
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.VPDocAsideOutline .outline-link:hover,
+.VPDocAsideOutline .outline-link.active {
+  color: var(--md-sys-color-primary);
+}
+
+.VPDocAsideOutline .outline-marker {
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary);
+  transition:
+    top var(--md-sys-motion-spring-expressive-spatial-fast-duration)
+      var(--md-sys-motion-spring-expressive-spatial-fast-easing),
+    background-color
+      var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing),
+    opacity var(--md-sys-motion-spring-expressive-effects-fast-duration)
+      var(--md-sys-motion-spring-expressive-effects-fast-easing);
+}
+
+.VPDocAside .content {
+  border-inline-start: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* VitePress fades the outline with a fixed bottom gradient. It sits on top of
+   the footer when the outline reaches the viewport bottom, reading as a stray
+   shadow. The outline is short enough not to need the curtain. */
+.VPDoc .aside-curtain {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Content width
+   Narrower side gutters and a wider reading column than VitePress defaults,
+   while keeping the article body at a comfortable measure.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --m3e-doc-container-max: 76rem;
+  --m3e-doc-content-max: 56rem;
+}
+
+@media (min-width: 60rem) {
+  .VPContent .VPDoc {
+    padding-inline: var(--md-sys-spacing-300);
+  }
+
+  .VPContent .VPDoc:not(.has-sidebar) .container {
+    max-inline-size: var(--m3e-doc-container-max);
+  }
+
+  .VPContent .VPDoc:not(.has-sidebar) .content {
+    max-inline-size: var(--m3e-doc-content-max);
+  }
+
+  .VPContent .VPDoc > .container > .content {
+    padding-inline: var(--md-sys-spacing-300);
+  }
+}
+
+.VPContent .VPDoc .content-container,
+.VPContent .VPDoc.has-aside .content-container {
+  max-inline-size: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 59.99rem) {
+  .VPContent .VPDoc {
+    padding-inline: var(--md-sys-spacing-250);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Article typography
+   -------------------------------------------------------------------------- */
+
+.vp-doc {
+  color: var(--md-sys-color-on-surface);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  font-family: var(--vp-font-family-base);
+  color: var(--md-sys-color-on-surface);
+  font-weight: 620;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.vp-doc h1 {
+  font-size: clamp(2rem, 5vw, 2.65rem);
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+}
+
+.vp-doc h2 {
+  margin-block: var(--md-sys-spacing-600) var(--md-sys-spacing-200);
+  padding-block-start: var(--md-sys-spacing-300);
+  border-block-start: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+
+.vp-doc h3 {
+  margin-block: var(--md-sys-spacing-400) var(--md-sys-spacing-150);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.vp-doc p,
+.vp-doc li {
+  color: var(--md-sys-color-on-surface);
+}
+
+.vp-doc a {
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--md-sys-color-primary) 42%,
+    transparent
+  );
+  text-underline-offset: 0.18em;
+  transition: color var(--md-sys-motion-spring-expressive-effects-fast-duration)
+    var(--md-sys-motion-spring-expressive-effects-fast-easing);
+}
+
+.vp-doc a:hover {
+  color: var(--md-sys-color-primary-dim, var(--md-sys-color-primary));
+  text-decoration-color: currentcolor;
+}
+
+.vp-doc strong {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 650;
+}
+
+.vp-doc del,
+.vp-doc s {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.vp-doc hr {
+  height: 1px;
+  margin-block: var(--md-sys-spacing-500);
+  border: 0;
+  background: var(--md-sys-color-outline-variant);
+}
+
+.vp-doc blockquote {
+  margin-block: var(--md-sys-spacing-300);
+  padding: var(--md-sys-spacing-200) var(--md-sys-spacing-250);
+  border: 0;
+  border-inline-start: 4px solid var(--md-sys-color-primary);
+  border-radius: 0 var(--md-sys-shape-corner-large)
+    var(--md-sys-shape-corner-large) 0;
+  background: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.vp-doc blockquote > p {
+  margin: 0;
+  color: inherit;
+}
+
+.vp-doc ul,
+.vp-doc ol {
+  padding-inline-start: 1.4em;
+}
+
+.vp-doc li + li {
+  margin-block-start: 6px;
+}
+
+.vp-doc li::marker {
+  color: var(--md-sys-color-primary);
+}
+
+.vp-doc input[type="checkbox"] {
+  accent-color: var(--md-sys-color-primary);
+  inline-size: 1em;
+  block-size: 1em;
+  margin-inline-end: 8px;
+}
+
+/* GFM tables */
+.vp-doc .m3e-table-wrapper {
+  max-inline-size: 100%;
+  margin-block: var(--md-sys-spacing-300);
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-large);
+}
+
+.vp-doc .m3e-table-wrapper table {
+  display: table;
+  inline-size: 100%;
+  min-inline-size: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.vp-doc th,
+.vp-doc td {
+  padding: var(--md-sys-spacing-150) var(--md-sys-spacing-200);
+  border: 0;
+  border-block-end: 1px solid var(--md-sys-color-outline-variant);
+  text-align: start;
+}
+
+.vp-doc th {
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-emphasized-label-large-weight);
+}
+
+.vp-doc tr:last-child td {
+  border-block-end: 0;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: var(--md-sys-color-surface-container-low);
+}
+
+/* Inline code & blocks */
+.vp-doc :not(pre) > code {
+  padding: var(--md-sys-spacing-25) var(--md-sys-spacing-75);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  font-size: 0.86em;
+}
+
+.vp-doc div[class*="language-"] {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow: hidden;
+  border: 1px solid var(--m3e-code-border);
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--m3e-code-bg);
+  box-shadow: none;
+}
+
+.vp-doc div[class*="language-"] pre,
+.vp-doc div[class*="language-"] code {
+  max-inline-size: 100%;
+  background: transparent;
+}
+
+.vp-doc div[class*="language-"] > span.lang,
+.vp-doc div[class*="language-"] > button.copy {
+  color: var(--m3e-code-muted);
+}
+
+.vp-doc div[class*="language-"] > button.copy:hover {
+  border-radius: var(--md-sys-shape-corner-small);
+  color: var(--m3e-code-text);
+}
+
+.vp-doc .line-highlight {
+  background: var(--vp-code-line-highlight-color);
+}
+
+/* Images & media */
+.vp-doc img {
+  border-radius: var(--md-sys-shape-corner-large);
+}
+
+.vp-doc figure figcaption {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-small-size);
+}
+
+/* Callouts: VitePress ::: containers + GitHub `> [!WARNING]` alerts.
+   M3 has no warning role, so warning/caution use the error pair. */
+
+.vp-doc .custom-block,
+.vp-doc .markdown-alert {
+  --callout-accent: var(--md-sys-color-primary);
+  --callout-container: var(--md-sys-color-primary-container);
+
+  margin-block: var(--md-sys-spacing-300);
+  padding: var(--md-sys-spacing-200) var(--md-sys-spacing-250);
+  border: 1px solid color-mix(in srgb, var(--callout-accent) 38%, transparent);
+  border-radius: var(--md-sys-shape-corner-large);
+  background: color-mix(
+    in srgb,
+    var(--callout-container) 26%,
+    var(--md-sys-color-surface-container-low)
+  );
+  font-size: var(--md-sys-typescale-body-medium-size);
+}
+
+.vp-doc .custom-block.tip,
+.vp-doc .markdown-alert-tip {
+  --callout-accent: var(--md-sys-color-tertiary);
+  --callout-container: var(--md-sys-color-tertiary-container);
+}
+
+.vp-doc .custom-block.important,
+.vp-doc .markdown-alert-important {
+  --callout-accent: var(--md-sys-color-secondary);
+  --callout-container: var(--md-sys-color-secondary-container);
+}
+
+.vp-doc .custom-block.warning,
+.vp-doc .custom-block.danger,
+.vp-doc .markdown-alert-warning,
+.vp-doc .markdown-alert-caution {
+  --callout-accent: var(--md-sys-color-error);
+  --callout-container: var(--md-sys-color-error-container);
+}
+
+.vp-doc .custom-block-title,
+.vp-doc .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-100);
+  margin: 0 0 var(--md-sys-spacing-100);
+  color: var(--callout-accent);
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-emphasized-title-small-weight);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+}
+
+.vp-doc .custom-block-title::before,
+.vp-doc details.custom-block > summary::before {
+  font-family: "Material Symbols Outlined";
+  font-size: var(--md-sys-spacing-250);
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  line-height: 1;
+  content: "info";
+}
+
+.vp-doc .custom-block.tip .custom-block-title::before {
+  content: "lightbulb";
+}
+
+.vp-doc .custom-block.important .custom-block-title::before {
+  content: "priority_high";
+}
+
+.vp-doc .custom-block.warning .custom-block-title::before {
+  content: "warning";
+}
+
+.vp-doc .custom-block.danger .custom-block-title::before {
+  content: "dangerous";
+}
+
+.vp-doc .custom-block.details .custom-block-title::before {
+  content: "expand_more";
+}
+
+.vp-doc .markdown-alert-title .material-symbols-outlined {
+  font-size: var(--md-sys-spacing-250);
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.vp-doc .custom-block > :last-child,
+.vp-doc .markdown-alert > :last-child {
+  margin-block-end: 0;
+}
+
+.vp-doc .custom-block a,
+.vp-doc .markdown-alert a {
+  font-weight: 600;
+}
+
+.vp-doc details.custom-block > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-100);
+  color: var(--md-sys-color-primary);
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-emphasized-title-small-weight);
+  cursor: pointer;
+  list-style: none;
+}
+
+.vp-doc details.custom-block > summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc details.custom-block[open] > summary::before {
+  transform: rotate(180deg);
+}
+
+.vp-doc details.custom-block > summary::before {
+  transition: transform
+    var(--md-sys-motion-spring-expressive-spatial-fast-duration)
+    var(--md-sys-motion-spring-expressive-spatial-fast-easing);
+}
+
+/* --------------------------------------------------------------------------
+   MathJax
+   -------------------------------------------------------------------------- */
+
+mjx-container {
+  color: var(--md-sys-color-on-surface);
+  font-size: 1.04em;
+}
+
+mjx-container[display="true"] {
+  max-inline-size: 100%;
+  margin-block: var(--md-sys-spacing-250) !important;
+  padding: var(--md-sys-spacing-150) var(--md-sys-spacing-50);
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-low);
+}
+
+mjx-container[display="true"] > svg {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+/* --------------------------------------------------------------------------
+   About page
+   -------------------------------------------------------------------------- */
+
+.about-page .VPDoc .container {
+  max-inline-size: 1080px;
+}
+
+.about-page .VPDoc:not(.has-sidebar) .content {
+  max-inline-size: 880px;
+}
+
+.blog-index-page .VPDoc .container {
+  max-inline-size: 1180px;
+}
+
+.blog-index-page .VPDoc:not(.has-sidebar) .content {
+  max-inline-size: 1080px;
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  align-items: start;
+  gap: var(--md-sys-spacing-500);
+  margin-block: var(--md-sys-spacing-100) var(--md-sys-spacing-500);
+}
+
+.about-intro__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-150);
+}
+
+.about-eyebrow {
+  margin: 0 !important;
+  color: var(--md-sys-color-primary) !important;
+  font-size: var(--md-sys-typescale-label-medium-size) !important;
+  font-weight: var(
+    --md-sys-typescale-emphasized-label-medium-weight
+  ) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+}
+
+.about-intro h1 {
+  margin-block: 0 var(--md-sys-spacing-100) !important;
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: clamp(2rem, 4.4vw, 2.8rem) !important;
+  line-height: 1.14 !important;
+  text-wrap: balance;
+}
+
+.about-lede {
+  max-inline-size: 56ch;
+  margin: 0 !important;
+  color: var(--md-sys-color-on-surface-variant) !important;
+  font-size: var(--md-sys-typescale-body-large-size) !important;
+  line-height: 1.75 !important;
+}
+
+.about-page .social-links {
+  margin-block: var(--md-sys-spacing-250) var(--md-sys-spacing-500);
+}
+
+.about-page .vp-doc h2:first-of-type {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+
+@media (max-width: 860px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: var(--md-sys-spacing-300);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Misc
+   -------------------------------------------------------------------------- */
+
+.VPFooter {
+  border-block-start: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-low);
+}
+
+.VPBackToTop .icon {
+  color: var(--md-sys-color-primary);
+}
+
+@media (max-width: 40rem) {
+  .vp-doc th,
+  .vp-doc td {
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
