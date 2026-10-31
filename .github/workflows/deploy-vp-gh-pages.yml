@@ -22,9 +22,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          # 如果 package.json 中已声明 packageManager，这里可以省略 version
-          version: 9
 
       - name: Setup Node
         uses: actions/setup-node@v6
