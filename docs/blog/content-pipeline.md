@@ -10,7 +10,7 @@ blog:
   tags: [VitePress, RSS, 架构]
   category: 工程
   scope: site
-license: MIT
+license: CC-BY-4.0
 ---
 
 # 为什么首页文章流没有用插件组件

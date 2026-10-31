@@ -3,20 +3,18 @@ title: 关于
 pageClass: about-page
 aside: false
 outline: false
-description: 关于 Meng，以及这个用 VitePress 和 Material 3 Expressive 搭起来的博客。
+description: 关于我以及这个用 VitePress 和 Material 3 Expressive 搭起来的博客。
 ---
 
 <div class="about-intro">
   <div class="about-intro__copy">
     <p class="about-eyebrow">README · M33E</p>
-    <h1>你好，我是 Meng。</h1>
+    <h1>表达，自有声 | M<sup>3</sup>3E</h1>
     <p class="about-lede">
-      白天写界面，晚上拆界面。这个站点是我的公开笔记本：把设计系统的想法、
-      前端工程的取舍，以及一些还没想清楚的草稿放在一起。
+      Material 3 Design Expressive，加上 VitePress。不过度设计，不提供过多自定义选项，开箱即用。这便是 <strong>M</strong>acros<strong>M</strong>eng's <strong>M</strong>aterial <strong>3</strong> <strong>E</strong>xpressive <strong>Blog</strong>。
     </p>
     <p class="about-lede">
-      我相信好的界面不是“加一点动效”，而是让信息、形状、颜色和节奏一起工作。
-      这里的所有组件都按 Material 3 Expressive 的 token 体系实现。
+      市面上 M3E 博客数不胜数，怎么才能设计一款好的主题，关键便是取舍与平衡。M33E 不提供过多配置选项，开箱即用，同时保持开放与新手友好，这便是它的最大优势。
     </p>
   </div>
 
@@ -34,26 +32,8 @@ description: 关于 Meng，以及这个用 VitePress 和 Material 3 Expressive �
 - **字体**：Google Sans Flex Variable 与 Noto Sans SC，Fontsource 自托管。
 - **数学**：`markdown-it-mathjax3` 渲染行内与块级公式。
 
-## Readme
+## 直接开始
 
 > 这个博客不追求“内容最多”，只追求每篇文章都能把一个想法讲清楚。
-> 如果某篇文章对你有帮助，欢迎通过上面的方式告诉我。
 
-### 常驻项目
-
-| 项目         | 状态     | 说明                        |
-| ------------ | -------- | --------------------------- |
-| M33E Blog    | 持续更新 | 你正在看的这个站点          |
-| 设计系统笔记 | 进行中   | 把 M3E token 落到真实产品里 |
-| 前端工程     | 随时     | 构建、性能、可维护性        |
-
-### 最近想做的事
-
-- [x] 用自定义布局重做首页
-- [x] 把博客列表皮肤化，而不是 Fork 插件
-- [ ] 给文章加更多交互式示例
-- [ ] 写一篇关于 spring motion 的实测
-
----
-
-_这个页面没有 `blog:` frontmatter，因此不会被博客插件收录。_
+参见项目的 README，开始搭建属于你的 M33E 风格博客网站。

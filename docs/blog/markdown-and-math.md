@@ -10,7 +10,7 @@ blog:
   tags: [Markdown, LaTeX, VitePress]
   category: 工程
   scope: site
-license: CC-BY-SA-4.0
+license: CC-BY-4.0
 ---
 
 # GFM、LaTeX 与一条能用的内容管线
