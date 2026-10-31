@@ -12,10 +12,10 @@
 
 ## 技术栈
 
-- VitePress `2.0.0-alpha.21`、Vue 3、TypeScript、pnpm、Node 22+
+- VitePress 2、Vue 3、TypeScript、pnpm、Node 22+
 - `@binarynoir/vitepress-blog`：文章识别、博客索引、筛选、作者信息、文章导航、RSS、Open Graph / Twitter 卡片
 - `verve-tokens` + Material Color Utilities：M3 Expressive token 层（Tonal Spot 配色）
-- Fontsource：Google Sans Flex Variable + Noto Sans SC Variable（不使用 Inter）
+- Fontsource：Google Sans Flex Variable + Noto Sans SC Variable
 - `material-symbols`：Material 图标字体
 - `markdown-it-mathjax3@4`（VitePress 2 的 peer 依赖范围）用于 LaTeX
 - `markdown-it-github-alerts`：`> [!WARNING]` 形式的 GFM alerts
@@ -26,7 +26,7 @@
 
 本仓库适合直接复制，而不是作为 npm 包安装。每个由模板创建的博客都拥有独立的内容、主题和部署流程。模板包含完整的 M3E 主题、示例文章、本地一言数据和 GitHub Pages workflow。
 
-本项目使用 **MPL 2.0** 开源，你不需要将你的博客内容也使用 MPL 2.0 开放，除非你引用了主题里的示例文章。
+本项目使用 **MPL 2.0** 开源，示例文章使用 CC-BY 4.0 公开开放。你不需要将你的博客内容也使用 MPL 2.0 开放。
 
 ### 模板包含的内容
 
