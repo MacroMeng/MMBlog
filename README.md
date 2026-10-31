@@ -1,44 +1,48 @@
 # M33E Blog
 
-A VitePress 2 blog with a Material 3 Expressive visual layer, plugin-generated blog lists/RSS/SEO, and a custom home page that reads the same frontmatter through `createContentLoader`.
+> [!WARNING]
+>
+> 本项目含有**大量未经审查的 AI 生成代码。**
 
-## Stack
+一个基于 VitePress 2 的博客：带有 Material 3 Expressive 视觉层，博客列表、RSS 与 SEO 由插件生成，自定义首页通过 `createContentLoader` 读取同一份 frontmatter。
 
-- VitePress `2.0.0-alpha.21`, Vue 3, TypeScript, pnpm, Node 22+
-- `@binarynoir/vitepress-blog` for post detection, blog index, filtering, bylines, post navigation, RSS, Open Graph / Twitter cards
-- `verve-tokens` + Material Color Utilities for the M3 Expressive token layer (Tonal Spot colour scheme)
-- Fontsource: Google Sans Flex Variable + Noto Sans SC Variable (no Inter)
-- `material-symbols` for the Material icon font
-- `markdown-it-mathjax3@4` (the range VitePress 2 peers with) for LaTeX
-- `markdown-it-github-alerts` for `> [!WARNING]`-style GFM alerts
-- Shiki `catppuccin-mocha` for code blocks
-- GFM is provided by VitePress's default Markdown pipeline
+## 技术栈
 
-## Use this repository as a GitHub template
+- VitePress `2.0.0-alpha.21`、Vue 3、TypeScript、pnpm、Node 22+
+- `@binarynoir/vitepress-blog`：文章识别、博客索引、筛选、作者信息、文章导航、RSS、Open Graph / Twitter 卡片
+- `verve-tokens` + Material Color Utilities：M3 Expressive token 层（Tonal Spot 配色）
+- Fontsource：Google Sans Flex Variable + Noto Sans SC Variable（不使用 Inter）
+- `material-symbols`：Material 图标字体
+- `markdown-it-mathjax3@4`（VitePress 2 的 peer 依赖范围）用于 LaTeX
+- `markdown-it-github-alerts`：`> [!WARNING]` 形式的 GFM alerts
+- Shiki `catppuccin-mocha`：代码块
+- GFM 由 VitePress 默认 Markdown 管线提供
 
-This repo is designed to be copied, not consumed as an npm package. Each generated blog owns its content, theme and deployment workflow. The template ships with the complete M3E theme, example posts, local one-liners, and a GitHub Pages workflow.
+## 将本仓库作为 GitHub 模板使用
 
-### What the template includes
+本仓库适合直接复制，而不是作为 npm 包安装。每个由模板创建的博客都拥有独立的内容、主题和部署流程。模板包含完整的 M3E 主题、示例文章、本地一言数据和 GitHub Pages workflow。
 
-- VitePress 2 site config and the complete M3E theme
-- Example blog index, posts, about page and custom home
-- Local one-liner JSON
-- `pnpm` lockfile and Node 22 engine
-- `.github/workflows/deploy.yml` for GitHub Pages
-- `scripts/verify.mjs` for post-build checks
-- Base-path helpers for project-site deployments
+### 模板包含的内容
 
-### Requirements
+- VitePress 2 站点配置和完整的 M3E 主题
+- 示例博客列表、文章、关于页和自定义首页
+- 本地一言 JSON
+- `pnpm` 锁文件和 Node 22 引擎声明
+- `.github/workflows/deploy.yml`，用于 GitHub Pages 部署
+- `scripts/verify.mjs`，构建后冒烟检查
+- 项目站点部署所需的 base 路径工具
 
-Before publishing or creating a blog:
+### 环境要求
 
-- Node.js `22` or newer
-- pnpm `10` or newer
+发布模板或创建新博客之前：
+
+- Node.js `22` 或更高版本
+- pnpm `10` 或更高版本
 - Git
-- A GitHub account
-- Optional: a custom domain
+- GitHub 账号
+- 可选：自定义域名
 
-Check versions:
+检查版本：
 
 ```bash
 node --version
@@ -46,15 +50,15 @@ pnpm --version
 git --version
 ```
 
-### Part A — Publish this repository as a template
+### 第一部分 — 将本仓库发布为模板
 
-1. Create an empty GitHub repository, for example:
+1. 在 GitHub 创建一个空仓库，例如：
 
    ```text
    vitepress-m3e-blog-template
    ```
 
-2. In this project, make the first commit and push:
+2. 在当前项目中完成首次提交并推送：
 
    ```bash
    git add .
@@ -64,138 +68,138 @@ git --version
    git push -u origin main
    ```
 
-   If the repository already has an `origin`, update it instead:
+   如果仓库已有 `origin`，改为更新地址：
 
    ```bash
    git remote set-url origin git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
    ```
 
-3. On GitHub, open:
+3. 在 GitHub 打开：
 
    ```text
    Settings → General → Template repository
    ```
 
-   Enable **Template repository**. GitHub now shows **Use this template** on the repository page.
+   勾选 **Template repository**。之后仓库页面会出现 **Use this template** 按钮。
 
-4. Add a repository description and topics such as:
+4. 添加仓库描述和 topics，例如：
 
    ```text
    vitepress, blog, material-design, material-3, m3-expressive
    ```
 
-5. Add a `LICENSE` file before making the template public. This repository intentionally does not choose a license for you.
+5. 在公开模板之前添加 `LICENSE` 文件。本仓库有意不替你选择许可证。
 
-6. In **Settings → Actions → General**, make sure Actions are allowed.
+6. 在 **Settings → Actions → General** 中确认允许运行 Actions。
 
-### Part B — Create a new blog from the template
+### 第二部分 — 从模板创建新博客
 
-1. On the template repository, click:
+1. 在模板仓库页面点击：
 
    ```text
    Use this template → Create a new repository
    ```
 
-2. Choose a repository name, for example `my-blog`, and create it. Do not initialize it with another README if you want a clean history.
+2. 填写仓库名，例如 `my-blog`，然后创建。如果想要干净的历史记录，不要同时初始化 README。
 
-3. Clone the new repository:
+3. 克隆新仓库：
 
    ```bash
    git clone git@github.com:YOUR_NAME/my-blog.git
    cd my-blog
    ```
 
-4. Install dependencies:
+4. 安装依赖：
 
    ```bash
    pnpm install
    ```
 
-   The template includes `pnpm-lock.yaml`; use `pnpm`, not npm, for normal development.
+   模板自带 `pnpm-lock.yaml`；日常开发请使用 `pnpm`，不要使用 npm。
 
-5. Configure the VitePress site values at the top of `.vitepress/config.ts`:
+5. 修改 `.vitepress/config.ts` 顶部的站点级配置：
 
    ```ts
    const siteUrl = "https://username.github.io";
    const siteTitle = "My Blog";
    const siteDescription = "Notes on code, design and everything between.";
 
-   // Root site / custom domain: "/".
-   // GitHub Pages project site: "/my-blog/".
+   // 根站点 / 自定义域名："/"。
+   // GitHub Pages 项目站点："/my-blog/"。
    const base = process.env.VP_BASE || "/";
    ```
 
-   `siteUrl` must be an absolute origin, without the repository path. The blog plugin joins `siteUrl + base + page path` for RSS, sitemap and social cards.
+   `siteUrl` 必须是绝对源地址，不包含仓库路径。博客插件会按 `siteUrl + base + 页面路径` 生成 RSS、sitemap 和社交卡片的地址。
 
-6. Edit `m3eConfig` in the same file. At minimum replace:
-   - `profile`: name, handle, role, bio, avatar, skills, CTA
-   - `socials`: GitHub / Bilibili / Email / RSS links and handles
-   - `home.hero`: hero copy, actions and right-side stat cards
-   - `home.latest`: post limit and section labels
-   - `home.about`: about teaser copy and link
-   - `footer`: copyright start year, ICP, footer links and labels
-   - `oneLiner`: local JSON source and fallback quote
+6. 编辑同一文件中的 `m3eConfig`。至少需要替换：
+   - `profile`：名称、handle、身份、简介、头像、技能、CTA
+   - `socials`：GitHub / Bilibili / Email / RSS 链接和 handle
+   - `home.hero`：Hero 文案、按钮，以及右侧三个卡片
+   - `home.latest`：文章数量和各区块文案
+   - `home.about`：About 区块文案和链接
+   - `footer`：版权起始年份、ICP、页脚链接和标签
+   - `oneLiner`：本地 JSON 数据源和离线兜底文案
 
-7. Update `themeConfig.nav` and `themeConfig.socialLinks` behavior:
-   - `nav` contains the navbar pages.
-   - Navbar social icons are generated automatically from `m3eConfig.socials` entries that have `navIcon`.
-   - `themeConfig.logo` points to the favicon or brand mark.
+7. 调整 `themeConfig.nav` 和 `themeConfig.socialLinks` 的行为：
+   - `nav` 定义导航栏中的页面。
+   - 导航栏社交图标由带 `navIcon` 的 `m3eConfig.socials` 条目自动生成。
+   - `themeConfig.logo` 指向 favicon 或品牌标识。
 
-8. Replace the example content:
+8. 替换示例内容：
 
    ```text
-   docs/blog/*.md              replace or delete example posts
-   docs/blog/index.md          keep the blog-index frontmatter; edit its intro
-   docs/about.md               replace the Readme and personal introduction
-   docs/public/avatar.svg      your avatar
-   docs/public/favicon.svg     your favicon
-   docs/public/covers/*        post covers
-   docs/public/one-liners.json your local quotes
+   docs/blog/*.md              替换或删除示例文章
+   docs/blog/index.md          保留 blog-index frontmatter，修改简介
+   docs/about.md               替换为你的个人介绍
+   docs/public/avatar.svg      你的头像
+   docs/public/favicon.svg     你的 favicon
+   docs/public/covers/*        文章封面
+   docs/public/one-liners.json 你的一言数据
    ```
 
-   The about page must not contain a `blog:` field. It is intentionally not a blog post.
+   关于页不能包含 `blog:` 字段，它被有意排除在博客文章之外。
 
-9. Add a license field to each post if you use the licence card:
+9. 如果使用许可证卡片，为每篇文章添加 license 字段：
 
    ```yaml
    license: CC-BY-4.0
    # licenseUrl: https://example.com/license
    ```
 
-10. Change the theme seed if you do not want the default Material blue-purple:
+10. 如果不想使用默认的 Material 蓝紫色，修改主题种子色：
 
     ```js
     // scripts/generate-theme.mjs
     const seed = "#6750A4";
     ```
 
-    Then regenerate tokens:
+    然后重新生成 tokens：
 
     ```bash
     pnpm theme
     ```
 
-11. Start the development server:
+11. 启动开发服务器：
 
     ```bash
     pnpm dev
     ```
 
-12. Check the site locally. At minimum visit:
-    - `/` for the custom home
-    - `/blog/` for the generated list, filters and RSS
-    - one post for byline, newer/older navigation and licence card
-    - `/about` for the profile card and social links
-    - `/blog/markdown-and-math` for MathJax, GFM alerts and code blocks
+12. 在本地检查站点，至少访问：
+    - `/`：自定义首页
+    - `/blog/`：生成的列表、筛选和 RSS
+    - 任意一篇文章：作者信息、上一篇/下一篇、许可证卡片
+    - `/about`：Profile Card 和社交链接
+    - `/blog/markdown-and-math`：MathJax、GFM alerts 和代码块
 
-13. Run the production build and smoke checks:
+13. 运行生产构建和冒烟检查：
 
     ```bash
     pnpm build
     pnpm verify
     ```
 
-14. Commit your site content:
+14. 提交你的站点内容：
 
     ```bash
     git add .
@@ -203,25 +207,25 @@ git --version
     git push
     ```
 
-### Part C — Deploy to GitHub Pages
+### 第三部分 — 部署到 GitHub Pages
 
-1. On the new repository, open:
+1. 在新仓库中打开：
 
    ```text
    Settings → Pages
    ```
 
-2. Set **Source** to **GitHub Actions**.
+2. 将 **Source** 设为 **GitHub Actions**。
 
-3. The included workflow runs on pushes to `main`:
+3. 仓库自带的 workflow 会在推送到 `main` 时运行：
 
    ```text
    .github/workflows/deploy.yml
    ```
 
-   It installs pnpm and Node 22, runs `pnpm install --frozen-lockfile`, builds the site, and publishes `.vitepress/dist`.
+   它会安装 pnpm 和 Node 22，执行 `pnpm install --frozen-lockfile`，构建站点，并发布 `.vitepress/dist`。
 
-4. If your default branch is not `main`, update:
+4. 如果默认分支不是 `main`，修改：
 
    ```yaml
    on:
@@ -229,15 +233,15 @@ git --version
        branches: [main]
    ```
 
-5. Set the correct URL/base combination:
+5. 选择正确的 URL / base 组合：
 
-   | Deployment target                          | `siteUrl`                    | `base` / `VP_BASE` |
-   | ------------------------------------------ | ---------------------------- | ------------------ |
-   | User site: `username.github.io`            | `https://username.github.io` | `/` or unset       |
-   | Project site: `username.github.io/my-blog` | `https://username.github.io` | `/my-blog/`        |
-   | Custom domain: `blog.example.com`          | `https://blog.example.com`   | `/` or unset       |
+   | 部署目标                               | `siteUrl`                    | `base` / `VP_BASE` |
+   | -------------------------------------- | ---------------------------- | ------------------ |
+   | 用户站点：`username.github.io`         | `https://username.github.io` | `/` 或留空         |
+   | 项目站点：`username.github.io/my-blog` | `https://username.github.io` | `/my-blog/`        |
+   | 自定义域名：`blog.example.com`         | `https://blog.example.com`   | `/` 或留空         |
 
-6. For a project site, add a repository Actions variable:
+6. 如果是项目站点，添加仓库 Actions 变量：
 
    ```text
    Settings → Secrets and variables → Actions → Variables
@@ -245,35 +249,35 @@ git --version
    Value: /my-blog/
    ```
 
-   The workflow passes `VP_BASE` into the build. The internal links and public images in custom components use `resolveHref()` / `resolveAsset()` from `.vitepress/theme/utils/url.ts`, so they follow the same base path.
+   workflow 会把 `VP_BASE` 传入构建。自定义组件中的内部链接和 public 图片通过 `.vitepress/theme/utils/url.ts` 里的 `resolveHref()` / `resolveAsset()` 处理，因此会自动带上相同的 base 路径。
 
-7. For a custom domain, set it in **Settings → Pages → Custom domain**, and use `base: "/"` plus the full custom-domain URL in `siteUrl`. If GitHub asks for a `CNAME` file, add it to `docs/public/CNAME` containing only the domain:
+7. 如果使用自定义域名，在 **Settings → Pages → Custom domain** 中设置，并在 `siteUrl` 中使用完整的自定义域名，同时保持 `base: "/"`。如果 GitHub 要求 `CNAME` 文件，在 `docs/public/CNAME` 中只写入域名：
 
    ```text
    blog.example.com
    ```
 
-8. After the first successful workflow run, the deployment URL appears in:
+8. 首次 workflow 运行成功后，部署地址会出现在：
    - **Actions → Deploy to GitHub Pages**
    - **Settings → Pages**
 
-### Part D — Troubleshooting
+### 第四部分 — 常见问题
 
-| Symptom                                           | Fix                                                                                                               |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| CSS, images or fonts 404 after deployment         | `base` does not match the repository path. Set `VP_BASE=/repo/` or update `base`.                                 |
-| Homepage works but post links 404                 | Check `siteUrl` and `base`; `siteUrl` must be the origin, `base` contains the repository path.                    |
-| Feed or OG image URLs point to the wrong host     | Update `siteUrl`; rebuild.                                                                                        |
-| `pnpm install --frozen-lockfile` fails in Actions | Run `pnpm install` locally after changing dependencies, commit `pnpm-lock.yaml`, and push.                        |
-| Deployment job fails with permissions             | Enable Pages with **GitHub Actions** source and keep the workflow `pages: write` / `id-token: write` permissions. |
-| About page appears in the blog                    | Remove its `blog:` frontmatter key.                                                                               |
-| Home post cards show the wrong author             | Check the `author` frontmatter key against `m3eConfig.authors`, or use a display name/object.                     |
-| Theme changes are not reflected                   | Run `pnpm theme`, then restart `pnpm dev`; `tokens.css` is generated.                                             |
-| Only the default VitePress theme appears          | Make sure the new repo copied `.vitepress/theme/` and did not only copy `docs/`.                                  |
+| 现象                                             | 处理方式                                                                                                   |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| 部署后 CSS、图片或字体 404                       | `base` 与仓库路径不一致。设置 `VP_BASE=/repo/` 或修改 `base`。                                             |
+| 首页正常，但文章链接 404                         | 检查 `siteUrl` 和 `base`；`siteUrl` 是源地址，`base` 包含仓库路径。                                        |
+| Feed 或 OG 图片地址指向了错误的主机              | 修改 `siteUrl` 后重新构建。                                                                                |
+| Actions 中 `pnpm install --frozen-lockfile` 失败 | 本地修改依赖后执行 `pnpm install`，提交 `pnpm-lock.yaml` 并推送。                                          |
+| 部署任务因权限失败                               | 将 Pages 的 Source 设为 **GitHub Actions**，并保留 workflow 中的 `pages: write` / `id-token: write` 权限。 |
+| 关于页出现在博客列表中                           | 删除它的 `blog:` frontmatter 字段。                                                                        |
+| 首页文章卡片作者显示错误                         | 检查文章 `author` 字段是否匹配 `m3eConfig.authors`，或直接使用显示名称/对象。                              |
+| 修改主题后没有生效                               | 执行 `pnpm theme`，然后重启 `pnpm dev`；`tokens.css` 是生成文件。                                          |
+| 只显示 VitePress 默认主题                        | 确认新仓库复制了 `.vitepress/theme/`，而不是只复制了 `docs/`。                                             |
 
-### Part E — Keeping a generated blog in sync with the template
+### 第五部分 — 与模板保持同步
 
-A generated repository is an independent copy. If you later improve the template and want those changes in an existing blog, add the template as a second remote and merge deliberately:
+由模板生成的仓库是独立副本。如果之后改进了模板，并希望把改动同步到已有博客，可以把模板添加为第二个 remote，然后有意地合并：
 
 ```bash
 git remote add template git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
@@ -281,31 +285,31 @@ git fetch template
 git merge template/main --allow-unrelated-histories
 ```
 
-Review conflicts in `.vitepress/config.ts`, `m3eConfig`, `docs/` and assets. Do not blindly merge template demo content into a published blog.
+重点检查 `.vitepress/config.ts`、`m3eConfig`、`docs/` 和静态资源中的冲突。不要把模板的示例内容盲目合并进已经发布的博客。
 
-### Template cleanup checklist
+### 模板清理清单
 
-- [ ] Replace `siteUrl`, `siteTitle`, `siteDescription` and `base`
-- [ ] Replace `m3eConfig.profile`
-- [ ] Replace `m3eConfig.socials`
-- [ ] Replace `m3eConfig.home.hero.stats` with your own three cards
-- [ ] Replace `m3eConfig.footer` links, ICP and copyright settings
-- [ ] Replace `docs/blog/*.md` example posts
-- [ ] Replace `docs/about.md`
-- [ ] Replace `docs/public/avatar.svg`, `favicon.svg`, `covers/` and `one-liners.json`
-- [ ] Update `themeConfig.nav`
-- [ ] Pick a theme seed and run `pnpm theme`
-- [ ] Add a project license
-- [ ] Enable Pages with GitHub Actions
-- [ ] Run `pnpm build` and `pnpm verify`
+- [ ] 替换 `siteUrl`、`siteTitle`、`siteDescription` 和 `base`
+- [ ] 替换 `m3eConfig.profile`
+- [ ] 替换 `m3eConfig.socials`
+- [ ] 替换 `m3eConfig.home.hero.stats` 为自己的三个卡片
+- [ ] 替换 `m3eConfig.footer` 的链接、ICP 和版权设置
+- [ ] 替换 `docs/blog/*.md` 示例文章
+- [ ] 替换 `docs/about.md`
+- [ ] 替换 `docs/public/avatar.svg`、`favicon.svg`、`covers/` 和 `one-liners.json`
+- [ ] 更新 `themeConfig.nav`
+- [ ] 选择主题种子色并执行 `pnpm theme`
+- [ ] 添加项目许可证
+- [ ] 使用 GitHub Actions 启用 Pages
+- [ ] 执行 `pnpm build` 和 `pnpm verify`
 
-## File tree
+## 目录结构
 
 ```text
 M33EBlog/
 ├─ docs/
 │  ├─ index.md                         # layout: m3e-home
-│  ├─ about.md                         # no `blog:` field — not a post
+│  ├─ about.md                         # 无 `blog:` 字段 —— 不是文章
 │  ├─ blog/
 │  │  ├─ index.md                      # blog-index: { scope: site }
 │  │  ├─ hello-m3e.md
@@ -314,14 +318,14 @@ M33EBlog/
 │  └─ public/
 │     ├─ avatar.svg
 │     ├─ favicon.svg
-│     ├─ one-liners.json               # local one-liner source
+│     ├─ one-liners.json               # 本地一言数据源
 │     └─ covers/{m3e,math,rss}.svg
 ├─ .vitepress/
 │  ├─ config.ts                        # withBlog + markdown + MathJax + nav
 │  └─ theme/
-│     ├─ index.ts                      # theme-without-fonts, fonts, icons, useBlog()
-│     ├─ Layout.vue                    # m3e-home switch + LicenseCard/SiteFooter slots
-│     ├─ layouts/M3EHome.vue           # hero + one-liner + post stream + about card
+│     ├─ index.ts                      # theme-without-fonts、字体、图标、useBlog()
+│     ├─ Layout.vue                    # m3e-home 切换 + LicenseCard/SiteFooter 插槽
+│     ├─ layouts/M3EHome.vue           # hero + 一言 + 文章流 + about 卡片
 │     ├─ components/
 │     │  ├─ M3Button.vue
 │     │  ├─ PostCard.vue
@@ -331,9 +335,9 @@ M33EBlog/
 │     │  ├─ LicenseCard.vue
 │     │  └─ SiteFooter.vue
 │     ├─ composables/
-│     │  └─ useM3EConfig.ts            # reads themeConfig.m3e + merges defaults
+│     │  └─ useM3EConfig.ts            # 读取 themeConfig.m3e 并合并默认值
 │     ├─ config/
-│     │  └─ defaults.ts                # default content + deep merge
+│     │  └─ defaults.ts                # 默认内容 + 深度合并
 │     ├─ data/
 │     │  └─ homePosts.data.ts          # createContentLoader('blog/**/*.md')
 │     ├─ types/
@@ -341,25 +345,25 @@ M33EBlog/
 │     │  └─ site-config.ts             # M3EConfig + DeepPartial
 │     ├─ utils/
 │     │  ├─ date.ts
-│     │  └─ url.ts                     # base-aware resolveHref/resolveAsset
+│     │  └─ url.ts                     # 感知 base 的 resolveHref/resolveAsset
 │     └─ styles/
-│        ├─ tokens.css                 # generated, do not edit
-│        ├─ theme.css                  # M3 ↔ VitePress bridge, typography, nav
-│        └─ blog.css                   # plugin CSS-variable/class skin
+│        ├─ tokens.css                 # 生成文件，不要手动编辑
+│        ├─ theme.css                  # M3 ↔ VitePress 桥接、排版、导航
+│        └─ blog.css                   # 插件 CSS 变量/类名皮肤
 ├─ .github/workflows/
-│  └─ deploy.yml                       # GitHub Pages deployment
+│  └─ deploy.yml                       # GitHub Pages 部署
 ├─ scripts/
 │  ├─ generate-theme.mjs               # seed #6750A4 → tokens.css
-│  └─ verify.mjs                       # post-build smoke checks
+│  └─ verify.mjs                       # 构建后冒烟检查
 ├─ package.json
 └─ pnpm-lock.yaml
 ```
 
-## Architecture decisions
+## 架构决策
 
-### 1. Extend the default theme, not replace it
+### 1. 扩展默认主题，而不是替换它
 
-`theme/index.ts` imports `vitepress/theme-without-fonts`. This is what keeps the default theme from bundling Inter. Fonts are self-hosted by Fontsource and assigned in `theme.css`:
+`theme/index.ts` 引入 `vitepress/theme-without-fonts`。这是默认主题不会打包 Inter 的原因。字体由 Fontsource 自托管，并在 `theme.css` 中指定：
 
 ```css
 --vp-font-family-base:
@@ -367,79 +371,79 @@ M33EBlog/
   "PingFang SC", "Microsoft YaHei", sans-serif;
 ```
 
-### 2. The blog plugin owns blog data and routing
+### 2. 博客插件负责博客数据与路由
 
-`withBlog()` wraps VitePress config and composes with `markdown.config`, `transformHead`, `transformPageData`, `buildEnd` and the Vite plugin. We do not reimplement any of those. The generated blog list is plain Markdown/HTML, so `blog.css` only remaps its public `--vp-blog-*` variables and skins its documented `vp-blog-*` classes.
+`withBlog()` 包装 VitePress 配置，并与 `markdown.config`、`transformHead`、`transformPageData`、`buildEnd` 和 Vite 插件组合。我们不重新实现其中任何一项。生成的博客列表是普通 Markdown/HTML，因此 `blog.css` 只重映射其公开的 `--vp-blog-*` 变量，并为文档化的 `vp-blog-*` 类名换肤。
 
-### 3. Home is a separate data path over the same frontmatter
+### 3. 首页是同一份 frontmatter 的另一条数据路径
 
-`docs/index.md` uses `layout: m3e-home`. `Layout.vue` switches to `layouts/M3EHome.vue`. There, `data/homePosts.data.ts` calls:
+`docs/index.md` 使用 `layout: m3e-home`，`Layout.vue` 切换到 `layouts/M3EHome.vue`。其中 `data/homePosts.data.ts` 调用：
 
 ```ts
 createContentLoader("blog/**/*.md", { transform });
 ```
 
-It normalises `title`, `date`, `summary`, `image`, `author`, `tags`, `category` and `pinned` — the same field names the plugin reads. Author keys are resolved against `m3e.authors` in `PostCard` at render time, so both the home feed and the plugin cards display the configured author name. Images used on the home page should be public paths (`/covers/foo.svg`) or absolute URLs: the plugin can copy relative frontmatter images, but a custom loader cannot know Vite's hashed asset name at build time.
+它会规范化 `title`、`date`、`summary`、`image`、`author`、`tags`、`category` 和 `pinned`，字段名与插件读取的一致。作者 key 在渲染时由 `PostCard` 通过 `m3e.authors` 解析，因此首页文章流和插件卡片都会显示配置中的作者名。首页使用的图片应写成 public 路径（`/covers/foo.svg`）或绝对 URL：插件可以复制相对路径的 frontmatter 图片，但自定义 loader 在构建时无法得知 Vite 生成的哈希文件名。
 
-### 4. Default navbar is reused as-is
+### 4. 直接复用默认导航栏
 
-The custom home must still have the real VitePress navbar, including its mobile screen, overflow menu, search and appearance switch. `Layout.vue` reuses the internal `VPNav` component and the whole default `DefaultTheme.Layout` for every other page. No navigation logic is rewritten. The CSS only maps navbar surface/height/backdrop variables and adjusts visual states.
+自定义首页仍然需要真实的 VitePress 导航栏，包括移动端全屏菜单、溢出菜单、搜索和外观切换。`Layout.vue` 复用内部的 `VPNav` 组件，其他页面使用完整的默认 `DefaultTheme.Layout`。没有重写任何导航逻辑。CSS 只映射导航栏的表面色、高度、背景模糊变量，并调整视觉状态。
 
-**Risk / assumption:** importing `vitepress/dist/client/theme-default/components/VPNav.vue` is an internal path. The VitePress version is pinned in `package.json`; re-check this import when upgrading VitePress.
+**风险 / 假设：** 引入 `vitepress/dist/client/theme-default/components/VPNav.vue` 属于内部路径。VitePress 版本在 `package.json` 中固定；升级 VitePress 时需要重新检查该引入。
 
-### 5. Licence card uses `doc-after`, not `doc-footer-before`
+### 5. 许可证卡片使用 `doc-after`，而不是 `doc-footer-before`
 
-The intended slot was `doc-footer-before`, but VitePress wraps that slot in `VPDocFooter`, and `VPDocFooter` renders **only** when `editLink`, `lastUpdated` or VitePress prev/next exists. The blog plugin replaces VitePress prev/next with its own `.vp-blog-post-nav`, so the footer (and the licence slot inside it) disappears on posts. This was verified against the installed VitePress source.
+原计划使用 `doc-footer-before`，但 VitePress 会把该插槽包在 `VPDocFooter` 里，而 `VPDocFooter` **只有**在存在 `editLink`、`lastUpdated` 或 VitePress 上一篇/下一篇时才会渲染。博客插件用自己的 `.vp-blog-post-nav` 替换了 VitePress 的上一篇/下一篇，因此文章页上的页脚（以及其中的许可证插槽）会消失。这一结论已对照已安装的 VitePress 源码验证。
 
-The licence card is therefore injected through the unconditional `doc-after` slot. It still sits at the bottom of every post, after the plugin's newer/older navigation. This is a deliberate deviation from the initial plan, not a claim that the plugin exposes a new slot.
+因此许可证卡片通过无条件渲染的 `doc-after` 插槽注入。它仍然位于每篇文章底部、插件的新旧文章导航之后。这是对最初方案的刻意调整，并不表示插件提供了新的插槽。
 
-### 6. About is a normal doc page, not a post
+### 6. 关于页是普通文档页，不是文章
 
-`about.md` has no `blog:` key. It uses the doc layout with `aside: false` / `outline: false`, renders `ProfileCard` and a dedicated `SocialLinks` row, and never appears in the feed or generated blog list.
+`about.md` 没有 `blog:` 字段。它使用文档布局，设置 `aside: false` / `outline: false`，渲染 `ProfileCard` 和独立的 `SocialLinks` 行，永远不会出现在 feed 或生成的博客列表中。
 
-### 7. RSS, OG and Twitter are plugin-owned
+### 7. RSS、OG 和 Twitter 由插件负责
 
-The blog page and posts get a per-blog RSS feed (`/blog/feed.xml`), `<link rel="alternate">`, Open Graph and Twitter card tags from the plugin. No second feed implementation exists.
+博客页和文章页会获得每博客一份的 RSS feed（`/blog/feed.xml`）、`<link rel="alternate">`、Open Graph 和 Twitter 卡片标签。不存在第二套 feed 实现。
 
-## Material 3 Expressive notes
+## Material 3 Expressive 说明
 
-- Palette: seed `#6750A4` (Material blue-purple), generated by Material Color Utilities via `verve-tokens`, using the **Tonal Spot** scheme. It is lower-chroma than the earlier expressive scheme; secondary/tertiary roles are muted purple/pink, not green.
-- All component colours use `--md-sys-color-*`; radii use `--md-sys-shape-corner-*`; spacing uses the generated `--md-sys-spacing-*` scale (`space100 = 8dp`, plus nested 2/4/6/10 and 12/20 steps).
-- Motion uses `--md-sys-motion-*` tokens. Shape morphs use the **effects** spring (`damping 1.0`, no overshoot) because radius interpolation below zero is clamped to a square corner; spatial springs remain on transforms. The aliases are `--m3e-shape-morph-duration` / `--m3e-shape-morph-easing`.
-- Cards use a 12dp base radius (`medium`), expressive 20dp for the featured home card; button targets are 40/48/56px with a full-round resting shape and an 8/12/16dp pressed shape.
-- Icons are Material Symbols (outlined), self-hosted through `material-symbols`.
-- The generated `tokens.css` is committed. `pnpm theme` regenerates it. `verve-tokens@0.1.0` pulls a Material Color Utilities ESM build with extensionless imports, so generation runs through `tsx` (Node's native ESM loader rejects it).
+- 配色：种子色 `#6750A4`（Material 蓝紫色），由 Material Color Utilities 通过 `verve-tokens` 生成，使用 **Tonal Spot** 方案。它比早期的 expressive 方案彩度更低；secondary/tertiary 角色是柔和的紫色/粉色，而不是绿色。
+- 所有组件颜色使用 `--md-sys-color-*`；圆角使用 `--md-sys-shape-corner-*`；间距使用生成的 `--md-sys-spacing-*` 比例（`space100 = 8dp`，并包含 2/4/6/10 与 12/20 的嵌套步进）。
+- 动效使用 `--md-sys-motion-*` token。形状变形使用 **effects** 弹簧（`damping 1.0`，无回弹），因为圆角插值低于零时会被钳制成直角；空间弹簧仍用于 transform。别名为 `--m3e-shape-morph-duration` / `--m3e-shape-morph-easing`。
+- 卡片基础圆角为 12dp（`medium`），首页特色卡片使用 expressive 的 20dp；按钮触控目标为 40/48/56px，默认全圆角，按下时变为 8/12/16dp。
+- 图标使用 Material Symbols（outlined），通过 `material-symbols` 自托管。
+- 生成的 `tokens.css` 会提交到仓库。`pnpm theme` 会重新生成它。`verve-tokens@0.1.0` 依赖的 Material Color Utilities ESM 构建使用了无扩展名 import，因此生成脚本通过 `tsx` 运行（Node 原生 ESM loader 会拒绝这种写法）。
 
-## Add or edit a post
+## 添加或编辑文章
 
-Create `docs/blog/my-post.md`:
+创建 `docs/blog/my-post.md`：
 
 ```yaml
 ---
 title: My post
-description: Shown in the document head and used as the summary fallback.
+description: 显示在文档 head 中，并作为 summary 的兜底值。
 blog:
   date: 2026-11-01 10:00
-  summary: One or two sentences for cards, feeds and social cards.
-  image: /covers/my-cover.svg # public path or absolute URL
-  imageAlt: Description of the cover
-  author: meng # key from m3e.authors, or a display name/object
+  summary: 用于卡片、feed 和社交卡片的一两句话。
+  image: /covers/my-cover.svg # public 路径或绝对 URL
+  imageAlt: 封面描述
+  author: meng # m3e.authors 中的 key，也可以是显示名称/对象
   tags: [VitePress, Design]
   category: Engineering
-  scope: site # also list on the main blog
+  scope: site # 同时出现在主博客列表
   pinned: false
-  cover: false # show the image below the byline
+  cover: false # 在作者信息下方显示封面
 license: CC-BY-4.0
 ---
 ```
 
-The homepage will pick it up automatically. The plugin list does the same. The licence card is shown only when `license` is one of the mapped keys in `LicenseCard.vue` (or any custom string with `licenseUrl`).
+首页会自动收录。插件列表也会自动收录。只有当 `license` 是 `LicenseCard.vue` 中映射的 key（或任意自定义字符串并附带 `licenseUrl`）时，许可证卡片才会显示。
 
-## Customisation
+## 自定义
 
-### Site content config
+### 站点内容配置
 
-All **custom** site content lives in the `m3eConfig` object in `.vitepress/config.ts`. It is a `DeepPartial<M3EConfig>`, so you can override only the fields you need; `resolveM3EConfig()` deep-merges it with the defaults in `.vitepress/theme/config/defaults.ts`. Values that VitePress already owns (title, description, site URL, logo, nav, social links) are not duplicated here.
+所有**自定义**站点内容都放在 `.vitepress/config.ts` 的 `m3eConfig` 对象中。它的类型是 `DeepPartial<M3EConfig>`，因此只需覆盖需要的字段；`resolveM3EConfig()` 会把它与 `.vitepress/theme/config/defaults.ts` 中的默认值深度合并。VitePress 已经拥有的值（标题、描述、站点 URL、logo、导航、社交链接）不在这里重复。
 
 ```ts
 const m3eConfig = {
@@ -454,8 +458,8 @@ const m3eConfig = {
     {
       label: "GitHub",
       href: "https://github.com/",
-      icon: "code", // Material Symbols in about/footer
-      navIcon: "github", // optional Simple Icons in the navbar
+      icon: "code", // 关于页/页脚使用 Material Symbols
+      navIcon: "github", // 可选：导航栏使用 Simple Icons
     },
   ],
   home: {
@@ -468,8 +472,19 @@ const m3eConfig = {
       actions: [...],
       stats: [
         { icon: "edit_note", value: "{postCount}", label: "篇公开笔记" },
-        { icon: "interests", value: "M3E", label: "Material 3 Expressive", tone: "tertiary" },
-        { icon: "rss_feed", value: "RSS 已开启", label: "订阅全部文章", href: "/blog/feed.xml", tone: "surface" },
+        {
+          icon: "interests",
+          value: "M3E",
+          label: "Material 3 Expressive",
+          tone: "tertiary",
+        },
+        {
+          icon: "rss_feed",
+          value: "RSS 已开启",
+          label: "订阅全部文章",
+          href: "/blog/feed.xml",
+          tone: "surface",
+        },
       ],
     },
     latest: { limit: 7, ... },
@@ -487,90 +502,90 @@ const m3eConfig = {
 } satisfies DeepPartial<M3EConfig>;
 ```
 
-- `profile`: avatar, name, role, bio, skills and compact-card CTA
-- `socials`: about page and footer data; also generates `themeConfig.socialLinks` for the navbar
-- `authors`: available to the blog plugin and the home card author resolver
-- `home.hero`: text, CTA buttons, and the three right-side cards. `{postCount}` is replaced at runtime
-- `home.latest`: eyebrow, title, number of posts, action button, empty state
-- `home.about`: eyebrow, title, body, action button
-- `footer`: since, ICP, links, social label, built-with text and copyright suffix
-- `oneLiner`: local file path, labels and offline fallback
+- `profile`：头像、名称、身份、简介、技能和紧凑卡片 CTA
+- `socials`：关于页和页脚数据；同时生成导航栏使用的 `themeConfig.socialLinks`
+- `authors`：供博客插件和首页卡片作者解析使用
+- `home.hero`：文案、CTA 按钮和右侧三个卡片。`{postCount}` 会在运行时替换
+- `home.latest`：eyebrow、标题、文章数量、操作按钮、空状态
+- `home.about`：eyebrow、标题、正文、操作按钮
+- `footer`：起始年份、ICP、链接、社交标签、built-with 文案和版权后缀
+- `oneLiner`：本地文件路径、标签和离线兜底
 
-#### Use VitePress config where it already exists
+#### 已有 VitePress 配置时优先使用 VitePress
 
-These values are intentionally **not** duplicated in `m3eConfig`:
+以下值有意**不**在 `m3eConfig` 中重复：
 
-| Value                                   | VitePress source                                                 |
-| --------------------------------------- | ---------------------------------------------------------------- |
-| Site title / description                | `title`, `description`                                           |
-| Site URL                                | `sitemap.hostname` (the same value is passed to the blog plugin) |
-| Footer brand name / description         | `site.title`, `site.description`                                 |
-| Footer logo                             | `themeConfig.logo`                                               |
-| Navbar links                            | `themeConfig.nav`                                                |
-| Navbar social icons                     | derived from `m3e.socials` into `themeConfig.socialLinks`        |
-| Outline, search, appearance, doc footer | native `themeConfig` options                                     |
+| 值                         | VitePress 来源                                    |
+| -------------------------- | ------------------------------------------------- |
+| 站点标题 / 描述            | `title`、`description`                            |
+| 站点 URL                   | `sitemap.hostname`（同一个值会传给博客插件）      |
+| 页脚品牌名 / 描述          | `site.title`、`site.description`                  |
+| 页脚 Logo                  | `themeConfig.logo`                                |
+| 导航栏链接                 | `themeConfig.nav`                                 |
+| 导航栏社交图标             | 由 `m3e.socials` 派生到 `themeConfig.socialLinks` |
+| 目录、搜索、外观、文档页脚 | 原生 `themeConfig` 选项                           |
 
-The rich `socials` array is kept because VitePress's `socialLinks` only supports `icon` / `link` / `ariaLabel`; the about page and footer also need a display label, handle and Material Symbols icon. `themeConfig.socialLinks` is generated from it, so the navbar data is not configured twice.
+保留完整的 `socials` 数组，是因为 VitePress 的 `socialLinks` 只支持 `icon` / `link` / `ariaLabel`；关于页和页脚还需要显示名称、handle 和 Material Symbols 图标。`themeConfig.socialLinks` 由它生成，因此导航栏数据没有被配置两次。
 
-### Colours
+### 颜色
 
-Change `seed` or `variant` in `scripts/generate-theme.mjs` (currently `tonalSpot`), then:
+修改 `scripts/generate-theme.mjs` 中的 `seed` 或 `variant`（当前为 `tonalSpot`），然后执行：
 
 ```bash
 pnpm theme
 ```
 
-The generated `tokens.css` contains both light and dark M3 roles plus the M3 spacing scale. No component file needs editing. Use the [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) to preview a seed first.
+生成的 `tokens.css` 同时包含亮色和暗色 M3 角色，以及 M3 间距比例。无需编辑任何组件文件。可以先用 [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) 预览种子色效果。
 
-### Code blocks
+### 代码块
 
-`markdown.theme` is set to Shiki's `catppuccin-mocha` in `.vitepress/config.ts`. The official Mocha values for the block chrome live in `theme.css` as `--m3e-code-*` (the only non-M3 colour constants, because a syntax theme is an external palette).
+`.vitepress/config.ts` 中把 `markdown.theme` 设为 Shiki 的 `catppuccin-mocha`。代码块外框的官方 Mocha 颜色值以 `--m3e-code-*` 的形式放在 `theme.css` 中（这是唯一的非 M3 颜色常量，因为语法主题是外部调色板）。
 
 ### GFM alerts
 
-`markdown-it-github-alerts` is enabled with Chinese titles and Material Symbols icons:
+`markdown-it-github-alerts` 已启用，使用中文标题和 Material Symbols 图标：
 
 ```md
 > [!NOTE]
-> Information to keep in mind.
+> 需要记住的信息。
 
 > [!TIP]
-> A helpful suggestion.
+> 有用的建议。
 
 > [!WARNING]
-> Something risky.
+> 有风险的操作。
 
 > [!CAUTION]
-> A destructive action.
+> 破坏性操作。
 ```
 
-VitePress's `::: tip` / `::: warning` / `::: danger` / `::: details` containers use the same callout CSS. Warning/caution map to the M3 error pair because M3 has no dedicated warning role.
+VitePress 的 `::: tip` / `::: warning` / `::: danger` / `::: details` 容器使用同一套 callout 样式。warning/caution 映射到 M3 的 error 配色，因为 M3 没有专门的 warning 角色。
 
-### Content width
+### 内容宽度
 
-The doc layout uses narrower gutters and a wider column than VitePress defaults:
+文档布局使用比 VitePress 默认更窄的边距和更宽的正文列：
 
 - `--m3e-doc-container-max: 76rem`
 - `--m3e-doc-content-max: 56rem`
-- desktop inline padding: 24px; mobile: 20px
+- 桌面端行内 padding：24px；移动端：20px
 
-Edit these in `.vitepress/theme/styles/theme.css` if you want a wider or narrower reading measure. Tables and code blocks scroll horizontally on narrow screens instead of widening the page.
+如果希望阅读宽度更宽或更窄，在 `.vitepress/theme/styles/theme.css` 中修改这些变量。表格和代码块在窄屏上横向滚动，而不是撑宽页面。
 
-### Fonts
+### 字体
 
-Fontsource imports live in `.vitepress/theme/index.ts`. Update the imports and the `--vp-font-family-base` / `--vp-font-family-mono` stacks in `styles/theme.css`. Keep `vitepress/theme-without-fonts` so Inter is never bundled.
+Fontsource 的引入位于 `.vitepress/theme/index.ts`。更新引入语句以及 `styles/theme.css` 中的 `--vp-font-family-base` / `--vp-font-family-mono` 字体栈。保持使用 `vitepress/theme-without-fonts`，确保 Inter 永远不会被打包。
 
-### Homepage
+### 首页
 
-- Hero copy, both CTA buttons and the three right-side cards: `m3eConfig.home.hero` in `.vitepress/config.ts`
-- Number of posts: `m3eConfig.home.latest.limit`
-- Latest/about section headings and actions: `m3eConfig.home.latest` / `m3eConfig.home.about`
-- About teaser: `<ProfileCard compact />`, fed by `m3eConfig.profile`
-- One-liner data: `m3eConfig.oneLiner.source`, default `docs/public/one-liners.json`; the component fetches this local file and keeps a built-in fallback. There is no external quote API.
+- Hero 文案、两个 CTA 按钮和右侧三个卡片：`.vitepress/config.ts` 中的 `m3eConfig.home.hero`
+- 文章数量：`m3eConfig.home.latest.limit`
+- Latest/About 区块标题和操作按钮：`m3eConfig.home.latest` / `m3eConfig.home.about`
+- About 简介：`<ProfileCard compact />`，数据来自 `m3eConfig.profile`
+- 一言数据：`m3eConfig.oneLiner.source`，默认 `docs/public/one-liners.json`；组件会请求这个本地文件，并保留内置兜底。没有外部 quote API。
 
-### One-liner
+### 一言
 
-Edit `docs/public/one-liners.json`:
+编辑 `docs/public/one-liners.json`：
 
 ```json
 {
@@ -583,14 +598,14 @@ Edit `docs/public/one-liners.json`:
 }
 ```
 
-`OneLiner.vue` fetches `m3eConfig.oneLiner.source` with `withBase()`, picks a random quote, and avoids repeating the current one when the refresh button is used. The configured fallback stays visible if the file is missing. No external API is contacted.
+`OneLiner.vue` 通过 `withBase()` 请求 `m3eConfig.oneLiner.source`，随机选择一条，并在点击刷新按钮时避免重复当前内容。如果文件缺失，配置的兜底文案会一直显示。不会请求任何外部 API。
 
-### Footer: simple vs complex
+### 页脚：简单与复杂
 
-The implemented footer is the complex `SiteFooter` injected through `layout-bottom` in `Layout.vue`. To use VitePress's simple footer instead:
+当前实现的是复杂页脚 `SiteFooter`，通过 `Layout.vue` 的 `layout-bottom` 注入。若要改用 VitePress 的简单页脚：
 
-1. Remove the `#layout-bottom` `<SiteFooter />` from `Layout.vue` (and the `<SiteFooter />` inside `M3EHome.vue`).
-2. Add to `themeConfig`:
+1. 从 `Layout.vue` 中移除 `#layout-bottom` 下的 `<SiteFooter />`（以及 `M3EHome.vue` 中的 `<SiteFooter />`）。
+2. 在 `themeConfig` 中添加：
 
 ```ts
 footer: {
@@ -599,58 +614,58 @@ footer: {
 }
 ```
 
-Do not keep both enabled or the page will show two footers.
+不要同时启用两者，否则页面会显示两个页脚。
 
-### Navigation
+### 导航
 
-The desktop nav/mobile nav are the default theme. Add/remove items in `themeConfig.nav`; overflow into the `⋯` menu, the hamburger screen, search, appearance and social links are all handled by VitePress. `theme.css` only changes surface, height, backdrop filter, hover/active pills and mobile row shapes.
+桌面端导航和移动端导航都是默认主题。在 `themeConfig.nav` 中增删项目；溢出到 `⋯` 菜单、全屏汉堡菜单、搜索、外观和社交链接都由 VitePress 处理。`theme.css` 只修改表面色、高度、背景模糊、悬停/按下胶囊形状和移动端行形状。
 
-### Blog list and post navigation
+### 博客列表与文章导航
 
-Only CSS is used. Edit `styles/blog.css`:
+只使用 CSS。编辑 `styles/blog.css`：
 
-- plugin variables: `--vp-blog-card-*`, `--vp-blog-tag-*`, `--vp-blog-accent`
-- classes: `.vp-blog-list`, `.vp-blog-card`, `.vp-blog-browse`, `.vp-blog-byline`, `.vp-blog-post-nav`
+- 插件变量：`--vp-blog-card-*`、`--vp-blog-tag-*`、`--vp-blog-accent`
+- 类名：`.vp-blog-list`、`.vp-blog-card`、`.vp-blog-browse`、`.vp-blog-byline`、`.vp-blog-post-nav`
 
-The newer/older widget's DOM is plugin-owned. It can be visually restyled, not replaced by a Vue component without forking the plugin. The "all posts" link comes from the plugin too.
+新旧文章组件的 DOM 由插件负责。可以重新设计视觉样式，但不能在不 fork 插件的情况下用 Vue 组件替换它。“全部文章”链接同样来自插件。
 
-## Verification
+## 验证
 
 ```bash
 pnpm build
 pnpm verify
-npm run build        # also works; the scripts call pnpm
+npm run build        # 同样可用；脚本内部调用 pnpm
 pnpm preview --port 4173
 ```
 
-`pnpm verify` checks:
+`pnpm verify` 检查：
 
-- home uses `m3e-home`, renders hero/one-liner/PostCard/about teaser/footer
-- default navbar/hamburger is present
-- about page is not in the feed and has no generated blog list
-- blog index contains plugin cards, browse panel and RSS link
-- every page links the main feed
-- post head has OG/Twitter tags
-- post has byline + plugin post nav + licence card
-- MathJax output exists
-- GitHub alerts render with Material Symbols and Catppuccin Mocha code blocks are present
-- the one-liner is served by the local `one-liners.json` file, with no hitokoto request
-- `/blog/feed.xml` exists with the three posts
-- CSS `@font-face` declares Google Sans Flex Variable, Noto Sans SC Variable and Material Symbols, and **no Inter**
-- the generated token file uses Tonal Spot and exposes the spacing scale
+- 首页使用 `m3e-home`，渲染 hero/一言/PostCard/about 简介/页脚
+- 默认导航栏/汉堡菜单存在
+- 关于页不在 feed 中，也没有生成的博客列表
+- 博客索引包含插件卡片、browse 面板和 RSS 链接
+- 每个页面都链接主 feed
+- 文章 head 包含 OG/Twitter 标签
+- 文章包含作者信息 + 插件文章导航 + 许可证卡片
+- MathJax 输出存在
+- GitHub alerts 使用 Material Symbols 渲染，代码块使用 Catppuccin Mocha
+- 一言由本地 `one-liners.json` 提供，没有 hitokoto 请求
+- `/blog/feed.xml` 存在，并包含三篇文章
+- CSS `@font-face` 声明了 Google Sans Flex Variable、Noto Sans SC Variable 和 Material Symbols，且**没有 Inter**
+- 生成的 token 文件使用 Tonal Spot，并暴露间距比例
 
-Manual checks:
+手动检查：
 
-- 390px viewport: hamburger opens the full-screen nav; Escape/close returns focus; the three nav items are visible.
-- 1440px: nav items stay on the bar; the desktop navbar is frosted; no horizontal overflow in the hero or post grid.
-- Toggle appearance: `.dark` swaps the M3 roles; `--md-sys-color-primary` becomes the dark-scheme value.
-- Open `/blog/markdown-and-math`: inline and display formulas render, with no `Failed to resolve component: mjx-*` warning in the build output or browser console.
-- Open `/about`: profile card + one social row; no blog cards.
+- 390px 视口：汉堡菜单打开全屏导航；Escape/关闭后焦点返回；三个导航项可见。
+- 1440px：导航项保持在导航栏上；桌面导航栏有磨砂效果；hero 和文章网格没有横向溢出。
+- 切换外观：`.dark` 会替换 M3 角色；`--md-sys-color-primary` 变为暗色方案的值。
+- 打开 `/blog/markdown-and-math`：行内公式和块级公式正常渲染，构建输出和浏览器控制台没有 `Failed to resolve component: mjx-*` 警告。
+- 打开 `/about`：Profile Card + 一行社交链接；没有博客卡片。
 
-## Explicit non-goals
+## 明确的非目标
 
-- No invented plugin APIs or slots.
-- No claim that the plugin's generated list or newer/older DOM can be replaced by a Vue component. It is CSS-skinned only.
-- The home page does not call a plugin list component; it reads the same frontmatter with `createContentLoader`.
-- No hard-coded colours, radii, spacing or spring durations in component styles. Palette values live only in the generated token file; spacing uses `--md-sys-spacing-*`. The only external palette constants are the Catppuccin Mocha code-block values. Artwork SVGs use palette values because external SVG cannot read page CSS variables.
-- No Fork of `@binarynoir/vitepress-blog`. A fork is only warranted if the post-nav DOM must change structurally or the home must share the plugin's internal data pipeline.
+- 不虚构插件 API 或插槽。
+- 不声称插件的生成列表或新旧文章 DOM 可以被 Vue 组件替换。只做 CSS 换肤。
+- 首页不调用插件列表组件；它通过 `createContentLoader` 读取同一份 frontmatter。
+- 组件样式中没有硬编码颜色、圆角、间距或弹簧时长。调色板值只存在于生成的 token 文件中；间距使用 `--md-sys-spacing-*`。唯一的外部调色板常量是 Catppuccin Mocha 代码块颜色。插画 SVG 使用调色板值，因为外部 SVG 无法读取页面 CSS 变量。
+- 不 fork `@binarynoir/vitepress-blog`。只有在必须结构性修改文章导航 DOM，或首页必须共享插件内部数据管线时，才值得 fork。
