@@ -1,4 +1,8 @@
-# M33E Blog
+# M33EBlog
+
+> MacrosMeng's Material 3 Expressive Blog
+
+---
 
 > [!WARNING]
 >
@@ -30,7 +34,6 @@
 - 示例博客列表、文章、关于页和自定义首页
 - 本地一言 JSON
 - `pnpm` 锁文件和 Node 22 引擎声明
-- `.github/workflows/deploy.yml`，用于 GitHub Pages 部署
 - `scripts/verify.mjs`，构建后冒烟检查
 - 项目站点部署所需的 base 路径工具
 
@@ -52,49 +55,7 @@ pnpm --version
 git --version
 ```
 
-### 第一部分 — 将本仓库发布为模板
-
-1. 在 GitHub 创建一个空仓库，例如：
-
-   ```text
-   vitepress-m3e-blog-template
-   ```
-
-2. 在当前项目中完成首次提交并推送：
-
-   ```bash
-   git add .
-   git commit -m "Initial blog template"
-   git branch -M main
-   git remote add origin git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
-   git push -u origin main
-   ```
-
-   如果仓库已有 `origin`，改为更新地址：
-
-   ```bash
-   git remote set-url origin git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
-   ```
-
-3. 在 GitHub 打开：
-
-   ```text
-   Settings → General → Template repository
-   ```
-
-   勾选 **Template repository**。之后仓库页面会出现 **Use this template** 按钮。
-
-4. 添加仓库描述和 topics，例如：
-
-   ```text
-   vitepress, blog, material-design, material-3, m3-expressive
-   ```
-
-5. 在公开模板之前添加 `LICENSE` 文件。本仓库有意不替你选择许可证。
-
-6. 在 **Settings → Actions → General** 中确认允许运行 Actions。
-
-### 第二部分 — 从模板创建新博客
+### 1 — 从模板创建新博客
 
 1. 在模板仓库页面点击：
 
@@ -156,7 +117,7 @@ git --version
    docs/public/avatar.svg      你的头像
    docs/public/favicon.svg     你的 favicon
    docs/public/covers/*        文章封面
-   docs/public/one-liners.json 你的一言数据
+   docs/public/hitokoto.json   你的一言数据
    ```
 
    关于页不能包含 `blog:` 字段，它被有意排除在博客文章之外。
@@ -209,7 +170,7 @@ git --version
     git push
     ```
 
-### 第三部分 — 部署到 GitHub Pages
+### 2 — 部署到 GitHub Pages
 
 1. 在新仓库中打开：
 
@@ -219,15 +180,8 @@ git --version
 
 2. 将 **Source** 设为 **GitHub Actions**。
 
-3. 仓库自带的 workflow 会在推送到 `main` 时运行：
 
-   ```text
-   .github/workflows/deploy.yml
-   ```
-
-   它会安装 pnpm 和 Node 22，执行 `pnpm install --frozen-lockfile`，构建站点，并发布 `.vitepress/dist`。
-
-4. 如果默认分支不是 `main`，修改：
+3. 如果默认分支不是 `main`，修改：
 
    ```yaml
    on:
@@ -235,7 +189,7 @@ git --version
        branches: [main]
    ```
 
-5. 选择正确的 URL / base 组合：
+4. 选择正确的 URL / base 组合：
 
    | 部署目标                               | `siteUrl`                    | `base` / `VP_BASE` |
    | -------------------------------------- | ---------------------------- | ------------------ |
@@ -243,7 +197,7 @@ git --version
    | 项目站点：`username.github.io/my-blog` | `https://username.github.io` | `/my-blog/`        |
    | 自定义域名：`blog.example.com`         | `https://blog.example.com`   | `/` 或留空         |
 
-6. 如果是项目站点，添加仓库 Actions 变量：
+5. 如果是项目站点，添加仓库 Actions 变量：
 
    ```text
    Settings → Secrets and variables → Actions → Variables
@@ -253,17 +207,17 @@ git --version
 
    workflow 会把 `VP_BASE` 传入构建。自定义组件中的内部链接和 public 图片通过 `.vitepress/theme/utils/url.ts` 里的 `resolveHref()` / `resolveAsset()` 处理，因此会自动带上相同的 base 路径。
 
-7. 如果使用自定义域名，在 **Settings → Pages → Custom domain** 中设置，并在 `siteUrl` 中使用完整的自定义域名，同时保持 `base: "/"`。如果 GitHub 要求 `CNAME` 文件，在 `docs/public/CNAME` 中只写入域名：
+6. 如果使用自定义域名，在 **Settings → Pages → Custom domain** 中设置，并在 `siteUrl` 中使用完整的自定义域名，同时保持 `base: "/"`。如果 GitHub 要求 `CNAME` 文件，在 `docs/public/CNAME` 中只写入域名：
 
    ```text
    blog.example.com
    ```
 
-8. 首次 workflow 运行成功后，部署地址会出现在：
+7. 首次 workflow 运行成功后，部署地址会出现在：
    - **Actions → Deploy to GitHub Pages**
    - **Settings → Pages**
 
-### 第四部分 — 常见问题
+### 3 — 常见问题
 
 | 现象                                             | 处理方式                                                                                                   |
 | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
@@ -277,7 +231,7 @@ git --version
 | 修改主题后没有生效                               | 执行 `pnpm theme`，然后重启 `pnpm dev`；`tokens.css` 是生成文件。                                          |
 | 只显示 VitePress 默认主题                        | 确认新仓库复制了 `.vitepress/theme/`，而不是只复制了 `docs/`。                                             |
 
-### 第五部分 — 与模板保持同步
+### 4 — 与模板保持同步
 
 由模板生成的仓库是独立副本。如果之后改进了模板，并希望把改动同步到已有博客，可以把模板添加为第二个 remote，然后有意地合并：
 
@@ -298,7 +252,7 @@ git merge template/main --allow-unrelated-histories
 - [ ] 替换 `m3eConfig.footer` 的链接、ICP 和版权设置
 - [ ] 替换 `docs/blog/*.md` 示例文章
 - [ ] 替换 `docs/about.md`
-- [ ] 替换 `docs/public/avatar.svg`、`favicon.svg`、`covers/` 和 `one-liners.json`
+- [ ] 替换 `docs/public/avatar.svg`、`favicon.svg`、`covers/` 和 `hitokoto.json`
 - [ ] 更新 `themeConfig.nav`
 - [ ] 选择主题种子色并执行 `pnpm theme`
 - [ ] 添加项目许可证
@@ -320,7 +274,7 @@ M33EBlog/
 │  └─ public/
 │     ├─ avatar.svg
 │     ├─ favicon.svg
-│     ├─ one-liners.json               # 本地一言数据源
+│     ├─ hitokoto.json               # 本地一言数据源
 │     └─ covers/{m3e,math,rss}.svg
 ├─ .vitepress/
 │  ├─ config.ts                        # withBlog + markdown + MathJax + nav
@@ -498,7 +452,7 @@ const m3eConfig = {
     links: [...],
   },
   oneLiner: {
-    source: "/one-liners.json",
+    source: "/hitokoto.json",
     fallback: { text: "慢慢来，比较快。", from: "M33E" },
   },
 } satisfies DeepPartial<M3EConfig>;
@@ -583,11 +537,11 @@ Fontsource 的引入位于 `.vitepress/theme/index.ts`。更新引入语句以�
 - 文章数量：`m3eConfig.home.latest.limit`
 - Latest/About 区块标题和操作按钮：`m3eConfig.home.latest` / `m3eConfig.home.about`
 - About 简介：`<ProfileCard compact />`，数据来自 `m3eConfig.profile`
-- 一言数据：`m3eConfig.oneLiner.source`，默认 `docs/public/one-liners.json`；组件会请求这个本地文件，并保留内置兜底。没有外部 quote API。
+- 一言数据：`m3eConfig.oneLiner.source`，默认 `docs/public/hitokoto.json`；组件会请求这个本地文件，并保留内置兜底。没有外部 quote API。
 
 ### 一言
 
-编辑 `docs/public/one-liners.json`：
+编辑 `docs/public/hitokoto.json`：
 
 ```json
 {
@@ -651,7 +605,7 @@ pnpm preview --port 4173
 - 文章包含作者信息 + 插件文章导航 + 许可证卡片
 - MathJax 输出存在
 - GitHub alerts 使用 Material Symbols 渲染，代码块使用 Catppuccin Mocha
-- 一言由本地 `one-liners.json` 提供，没有 hitokoto 请求
+- 一言由本地 `hitokoto.json` 提供，没有 hitokoto 请求
 - `/blog/feed.xml` 存在，并包含三篇文章
 - CSS `@font-face` 声明了 Google Sans Flex Variable、Noto Sans SC Variable 和 Material Symbols，且**没有 Inter**
 - 生成的 token 文件使用 Tonal Spot，并暴露间距比例
