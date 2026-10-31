@@ -16,58 +16,288 @@ A VitePress 2 blog with a Material 3 Expressive visual layer, plugin-generated b
 
 ## Use this repository as a GitHub template
 
-This repo is designed to be copied, not consumed as a package. Each generated blog owns its content, theme and deployment workflow.
+This repo is designed to be copied, not consumed as an npm package. Each generated blog owns its content, theme and deployment workflow. The template ships with the complete M3E theme, example posts, local one-liners, and a GitHub Pages workflow.
 
-1. Push this repo to GitHub.
-2. Open **Settings → General → Template repository** and enable it.
-3. Create a new repo with **Use this template → Create a new repository**.
-4. Clone the new repo and install:
+### What the template includes
+
+- VitePress 2 site config and the complete M3E theme
+- Example blog index, posts, about page and custom home
+- Local one-liner JSON
+- `pnpm` lockfile and Node 22 engine
+- `.github/workflows/deploy.yml` for GitHub Pages
+- `scripts/verify.mjs` for post-build checks
+- Base-path helpers for project-site deployments
+
+### Requirements
+
+Before publishing or creating a blog:
+
+- Node.js `22` or newer
+- pnpm `10` or newer
+- Git
+- A GitHub account
+- Optional: a custom domain
+
+Check versions:
+
+```bash
+node --version
+pnpm --version
+git --version
+```
+
+### Part A — Publish this repository as a template
+
+1. Create an empty GitHub repository, for example:
+
+   ```text
+   vitepress-m3e-blog-template
+   ```
+
+2. In this project, make the first commit and push:
+
+   ```bash
+   git add .
+   git commit -m "Initial blog template"
+   git branch -M main
+   git remote add origin git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
+   git push -u origin main
+   ```
+
+   If the repository already has an `origin`, update it instead:
+
+   ```bash
+   git remote set-url origin git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
+   ```
+
+3. On GitHub, open:
+
+   ```text
+   Settings → General → Template repository
+   ```
+
+   Enable **Template repository**. GitHub now shows **Use this template** on the repository page.
+
+4. Add a repository description and topics such as:
+
+   ```text
+   vitepress, blog, material-design, material-3, m3-expressive
+   ```
+
+5. Add a `LICENSE` file before making the template public. This repository intentionally does not choose a license for you.
+
+6. In **Settings → Actions → General**, make sure Actions are allowed.
+
+### Part B — Create a new blog from the template
+
+1. On the template repository, click:
+
+   ```text
+   Use this template → Create a new repository
+   ```
+
+2. Choose a repository name, for example `my-blog`, and create it. Do not initialize it with another README if you want a clean history.
+
+3. Clone the new repository:
+
+   ```bash
+   git clone git@github.com:YOUR_NAME/my-blog.git
+   cd my-blog
+   ```
+
+4. Install dependencies:
 
    ```bash
    pnpm install
    ```
 
-5. Change the site-level values near the top of `.vitepress/config.ts`:
+   The template includes `pnpm-lock.yaml`; use `pnpm`, not npm, for normal development.
+
+5. Configure the VitePress site values at the top of `.vitepress/config.ts`:
 
    ```ts
    const siteUrl = "https://username.github.io";
    const siteTitle = "My Blog";
-   const siteDescription = "My notes.";
+   const siteDescription = "Notes on code, design and everything between.";
+
+   // Root site / custom domain: "/".
+   // GitHub Pages project site: "/my-blog/".
    const base = process.env.VP_BASE || "/";
    ```
 
-6. Edit `m3eConfig` for profile, socials, home cards, footer and one-liner.
-7. Replace the example content in `docs/` and images in `docs/public/`; update `themeConfig.nav`.
-8. Run:
+   `siteUrl` must be an absolute origin, without the repository path. The blog plugin joins `siteUrl + base + page path` for RSS, sitemap and social cards.
 
-   ```bash
-   pnpm dev
-   pnpm build
-   pnpm verify
+6. Edit `m3eConfig` in the same file. At minimum replace:
+   - `profile`: name, handle, role, bio, avatar, skills, CTA
+   - `socials`: GitHub / Bilibili / Email / RSS links and handles
+   - `home.hero`: hero copy, actions and right-side stat cards
+   - `home.latest`: post limit and section labels
+   - `home.about`: about teaser copy and link
+   - `footer`: copyright start year, ICP, footer links and labels
+   - `oneLiner`: local JSON source and fallback quote
+
+7. Update `themeConfig.nav` and `themeConfig.socialLinks` behavior:
+   - `nav` contains the navbar pages.
+   - Navbar social icons are generated automatically from `m3eConfig.socials` entries that have `navIcon`.
+   - `themeConfig.logo` points to the favicon or brand mark.
+
+8. Replace the example content:
+
+   ```text
+   docs/blog/*.md              replace or delete example posts
+   docs/blog/index.md          keep the blog-index frontmatter; edit its intro
+   docs/about.md               replace the Readme and personal introduction
+   docs/public/avatar.svg      your avatar
+   docs/public/favicon.svg     your favicon
+   docs/public/covers/*        post covers
+   docs/public/one-liners.json your local quotes
    ```
 
-9. In **Settings → Pages**, set **Source** to **GitHub Actions**. The included `.github/workflows/deploy.yml` builds and deploys `.vitepress/dist`.
+   The about page must not contain a `blog:` field. It is intentionally not a blog post.
 
-### GitHub Pages URL and base
+9. Add a license field to each post if you use the licence card:
 
-The blog plugin joins `siteUrl + base + page path`, so use the origin in `siteUrl` and the repository path in `base`:
+   ```yaml
+   license: CC-BY-4.0
+   # licenseUrl: https://example.com/license
+   ```
 
-| Deployment | `siteUrl` | `base` / `VP_BASE` |
-| --- | --- | --- |
-| User site `username.github.io` | `https://username.github.io` | `/` (unset) |
-| Project site `username.github.io/my-blog` | `https://username.github.io` | `/my-blog/` |
-| Custom domain `blog.example.com` | `https://blog.example.com` | `/` (unset) |
+10. Change the theme seed if you do not want the default Material blue-purple:
 
-For project sites, set a repository Actions variable named `VP_BASE` to `/my-blog/` (Settings → Secrets and variables → Actions → Variables). The workflow passes it to the build. Custom internal links and public images in custom components use `resolveHref()` / `resolveAsset()` in `.vitepress/theme/utils/url.ts`, so they follow the same base path.
+    ```js
+    // scripts/generate-theme.mjs
+    const seed = "#6750A4";
+    ```
+
+    Then regenerate tokens:
+
+    ```bash
+    pnpm theme
+    ```
+
+11. Start the development server:
+
+    ```bash
+    pnpm dev
+    ```
+
+12. Check the site locally. At minimum visit:
+    - `/` for the custom home
+    - `/blog/` for the generated list, filters and RSS
+    - one post for byline, newer/older navigation and licence card
+    - `/about` for the profile card and social links
+    - `/blog/markdown-and-math` for MathJax, GFM alerts and code blocks
+
+13. Run the production build and smoke checks:
+
+    ```bash
+    pnpm build
+    pnpm verify
+    ```
+
+14. Commit your site content:
+
+    ```bash
+    git add .
+    git commit -m "Customize blog"
+    git push
+    ```
+
+### Part C — Deploy to GitHub Pages
+
+1. On the new repository, open:
+
+   ```text
+   Settings → Pages
+   ```
+
+2. Set **Source** to **GitHub Actions**.
+
+3. The included workflow runs on pushes to `main`:
+
+   ```text
+   .github/workflows/deploy.yml
+   ```
+
+   It installs pnpm and Node 22, runs `pnpm install --frozen-lockfile`, builds the site, and publishes `.vitepress/dist`.
+
+4. If your default branch is not `main`, update:
+
+   ```yaml
+   on:
+     push:
+       branches: [main]
+   ```
+
+5. Set the correct URL/base combination:
+
+   | Deployment target                          | `siteUrl`                    | `base` / `VP_BASE` |
+   | ------------------------------------------ | ---------------------------- | ------------------ |
+   | User site: `username.github.io`            | `https://username.github.io` | `/` or unset       |
+   | Project site: `username.github.io/my-blog` | `https://username.github.io` | `/my-blog/`        |
+   | Custom domain: `blog.example.com`          | `https://blog.example.com`   | `/` or unset       |
+
+6. For a project site, add a repository Actions variable:
+
+   ```text
+   Settings → Secrets and variables → Actions → Variables
+   Name:  VP_BASE
+   Value: /my-blog/
+   ```
+
+   The workflow passes `VP_BASE` into the build. The internal links and public images in custom components use `resolveHref()` / `resolveAsset()` from `.vitepress/theme/utils/url.ts`, so they follow the same base path.
+
+7. For a custom domain, set it in **Settings → Pages → Custom domain**, and use `base: "/"` plus the full custom-domain URL in `siteUrl`. If GitHub asks for a `CNAME` file, add it to `docs/public/CNAME` containing only the domain:
+
+   ```text
+   blog.example.com
+   ```
+
+8. After the first successful workflow run, the deployment URL appears in:
+   - **Actions → Deploy to GitHub Pages**
+   - **Settings → Pages**
+
+### Part D — Troubleshooting
+
+| Symptom                                           | Fix                                                                                                               |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| CSS, images or fonts 404 after deployment         | `base` does not match the repository path. Set `VP_BASE=/repo/` or update `base`.                                 |
+| Homepage works but post links 404                 | Check `siteUrl` and `base`; `siteUrl` must be the origin, `base` contains the repository path.                    |
+| Feed or OG image URLs point to the wrong host     | Update `siteUrl`; rebuild.                                                                                        |
+| `pnpm install --frozen-lockfile` fails in Actions | Run `pnpm install` locally after changing dependencies, commit `pnpm-lock.yaml`, and push.                        |
+| Deployment job fails with permissions             | Enable Pages with **GitHub Actions** source and keep the workflow `pages: write` / `id-token: write` permissions. |
+| About page appears in the blog                    | Remove its `blog:` frontmatter key.                                                                               |
+| Home post cards show the wrong author             | Check the `author` frontmatter key against `m3eConfig.authors`, or use a display name/object.                     |
+| Theme changes are not reflected                   | Run `pnpm theme`, then restart `pnpm dev`; `tokens.css` is generated.                                             |
+| Only the default VitePress theme appears          | Make sure the new repo copied `.vitepress/theme/` and did not only copy `docs/`.                                  |
+
+### Part E — Keeping a generated blog in sync with the template
+
+A generated repository is an independent copy. If you later improve the template and want those changes in an existing blog, add the template as a second remote and merge deliberately:
+
+```bash
+git remote add template git@github.com:YOUR_NAME/vitepress-m3e-blog-template.git
+git fetch template
+git merge template/main --allow-unrelated-histories
+```
+
+Review conflicts in `.vitepress/config.ts`, `m3eConfig`, `docs/` and assets. Do not blindly merge template demo content into a published blog.
 
 ### Template cleanup checklist
 
-- Replace `docs/blog/*.md` example posts.
-- Replace `docs/public/avatar.svg`, `favicon.svg`, `covers/` and `one-liners.json`.
-- Update `docs/about.md` and the home content in `m3eConfig`.
-- Change `package.json` name/description if desired.
-- Add a license of your choice (the repo currently has none).
-- Remove or keep the demo screenshots/assets as you prefer.
+- [ ] Replace `siteUrl`, `siteTitle`, `siteDescription` and `base`
+- [ ] Replace `m3eConfig.profile`
+- [ ] Replace `m3eConfig.socials`
+- [ ] Replace `m3eConfig.home.hero.stats` with your own three cards
+- [ ] Replace `m3eConfig.footer` links, ICP and copyright settings
+- [ ] Replace `docs/blog/*.md` example posts
+- [ ] Replace `docs/about.md`
+- [ ] Replace `docs/public/avatar.svg`, `favicon.svg`, `covers/` and `one-liners.json`
+- [ ] Update `themeConfig.nav`
+- [ ] Pick a theme seed and run `pnpm theme`
+- [ ] Add a project license
+- [ ] Enable Pages with GitHub Actions
+- [ ] Run `pnpm build` and `pnpm verify`
 
 ## File tree
 
