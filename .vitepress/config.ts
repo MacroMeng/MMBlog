@@ -7,11 +7,11 @@ import type { DeepPartial, M3EConfig } from "./theme/types/site-config.ts";
 
 // VitePress site-level values. `sitemap.hostname` is the single source for the
 // absolute URL; the blog plugin receives the same value.
-const siteUrl = "https://unnuTechnology.github.io";
-const siteTitle = "M33EBlog";
-const siteDescription = "MacrosMeng's Material 3 Expressive Blog Example Site";
+const siteUrl = "https://mm666.qzz.io";
+const siteTitle = "MMSite";
+const siteDescription = "MacrosMeng's Site";
 // Root site / custom domain: "/". GitHub Pages project site: "/repo-name/".
-const base = process.env.VP_BASE || "/M33EBlog/";
+const base = process.env.VP_BASE || "/";
 
 const alertIcon = (name: string) =>
   `<span class="material-symbols-outlined" aria-hidden="true">${name}</span>`;
@@ -172,17 +172,22 @@ const m3eConfig = {
   },
   profile: {
     name: "MacrosMeng",
-    handle: "M33E",
-    role: "只是一个学生……",
-    avatar: "/avatar.svg",
+    handle: "Designer & Developer",
+    role: "苦逼学生一枚",
+    avatar: "/AvatarMexy.png",
     bio: "The people who are crazy to think they can change the world, are the ones who do. —— Think Different, Apple",
-    location: "中国",
+    location: "Suzhou, China",
     skills: [
+      "Python",
+      "Flutter",
+      "Dart",
+      "M3E",
       "VitePress",
-      "Vue",
-      "TypeScript",
-      "Material 3 Expressive",
-      "Designing",
+      "Figma",
+      "Cavalry",
+      "CapCut",
+      "Web",
+      "Affinity"
     ],
     cta: {
       label: "认识我",
@@ -191,9 +196,9 @@ const m3eConfig = {
   },
   socials: [
     {
-      label: "GitHub Repo",
-      handle: "unnuTechnology/M33EBlog",
-      href: "https://github.com/unnuTechnology/M33EBlog",
+      label: "GitHub",
+      handle: "@MacroMeng",
+      href: "https://github.com/MacroMeng",
       icon: "code",
       navIcon: "github",
     },
@@ -210,16 +215,23 @@ const m3eConfig = {
       icon: "rss_feed",
       navIcon: "rss",
     },
+    {
+      label: "BiliBili",
+      handle: "@MacrosM",
+      href: "https://space.bilibili.com/1720926015",
+      icon: "videocam",
+      navIcon: "bilibili"
+    }
   ],
   home: {
     hero: {
       eyebrowIcon: "flare",
-      eyebrow: "M33E · 表达，自有声",
-      titleLead: "To Express",
-      titleAccent: "Expressively",
+      eyebrow: "WHERE THOUGHTS LIVE.",
+      titleLead: "Think",
+      titleAccent: "Different",
       titleTail: "",
       description:
-        "深入探索 Material Design 3 Expressive 带来的深厚表现力与足够简约不抢眼的博客风格。",
+        "欢迎来到 MMSite。即刻开始阅读，或者看看关于页面，详细了解我的信息。",
       actions: [
         {
           label: "开始阅读",
@@ -252,7 +264,7 @@ const m3eConfig = {
         },
         {
           icon: "rss_feed",
-          value: "RSS 已开启",
+          value: "RSS 订阅",
           label: "订阅全部文章",
           href: "/blog/feed.xml",
           tone: "surface",
@@ -261,7 +273,7 @@ const m3eConfig = {
     },
     latest: {
       eyebrow: "LATEST NOTES",
-      title: "最近写下的",
+      title: "最近更新内容",
       limit: 7,
       action: {
         label: "查看全部",
@@ -269,22 +281,22 @@ const m3eConfig = {
         icon: "arrow_forward",
         variant: "text",
       },
-      empty: "还没有文章。在 docs/blog/ 中新建一篇试试。",
+      empty: "咕咕咕！这里还没有文章。",
     },
     about: {
       eyebrow: "ABOUT",
-      title: "关于这个站点",
-      body: "这是一个用 VitePress 2 搭起来的博客范例，视觉层按 Material 3 Expressive 的 token 体系设计。文章、RSS 与 SEO 交给博客插件，首页文章流则用 createContentLoader 读取同一套 frontmatter。",
+      title: "关于站点",
+      body: "感谢 CF 大善人、Material Design、VitePress 和大肥鱼对这个站点的支持！",
       action: {
-        label: "阅读 Readme",
-        href: "/about",
-        icon: "arrow_outward",
-        variant: "tonal",
+        label: "给个 Star？",
+        href: "https://github.com/MacroMeng/MMBlog",
+        icon: "star",
+        variant: "outlined",
       },
     },
   },
   footer: {
-    since: 2026,
+    since: 2024,
     icp: "",
     links: [
       { label: "文章", href: "/blog/" },
@@ -292,7 +304,7 @@ const m3eConfig = {
       { label: "RSS", href: "/blog/feed.xml" },
     ],
     socialsLabel: "页脚社交链接",
-    builtWith: "Built with VitePress & Material 3 Expressive",
+    builtWith: "Built with M33EBlog",
     copyrightSuffix: "Code in MPL 2.0, Content in CC-BY 4.0",
   },
   oneLiner: {
@@ -302,8 +314,8 @@ const m3eConfig = {
     refreshLabel: "换一句",
     loadingLabel: "正在获取新句子",
     fallback: {
-      text: "你咋看到这个句子的？",
-      from: "你知道太多了。",
+      text: "你知道太多了。",
+      from: "🤫",
     },
   },
 } satisfies DeepPartial<M3EConfig>;
@@ -356,7 +368,7 @@ export default withBlog(
     cleanUrls: true,
     sitemap: { hostname: siteUrl },
     head: [
-      ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+      ["link", { rel: "icon", type: "image/svg+xml", href: "/Geo.jpg" }],
       ["meta", { name: "author", content: m3e.profile.name }],
       ["meta", { name: "format-detection", content: "telephone=no" }],
     ],
@@ -379,7 +391,7 @@ export default withBlog(
       },
     },
     themeConfig: {
-      logo: "/favicon.svg",
+      logo: "/Geo.jpg",
       nav: [
         { text: "首页", link: "/" },
         { text: "博客", link: "/blog/" },
